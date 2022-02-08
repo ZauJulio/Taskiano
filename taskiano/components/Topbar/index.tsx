@@ -12,8 +12,10 @@ interface ITopbar {
 function TopbarFC(props: ITopbar) {
   const [search, setSearch] = useState("");
   const [useImg, setUseImg] = useState(true);
+
   const user = useAuth((ctx) => ctx.user);
   const signOut = useAuth((ctx) => ctx.signOut);
+  const deleteAccount = useAuth((ctx) => ctx.deleteAccount);
 
   return (
     <div className={`${styles.topbarContainer} ${props.className ?? ""}`}>
@@ -32,11 +34,27 @@ function TopbarFC(props: ITopbar) {
             src={user?.avatar}
             alt="user_avatar"
             onError={() => setUseImg(false)}
-            onClick={signOut}
           />
         ) : (
           <FaUserCircle onClick={signOut} />
         )}
+
+        <div className={styles.userOptionsOverlay}>
+          <div className={styles.userInfo}>
+            <div className={styles.userName}>{user?.username}</div>
+            <div className={styles.userEmail}>{user?.email}</div>
+          </div>
+
+          <div className={styles.options}>
+            <button className={styles.deleteAccount} onClick={deleteAccount}>
+              Apagar conta
+            </button>
+
+            <button className={styles.signOut} onClick={signOut}>
+              Sair
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

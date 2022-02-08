@@ -1,74 +1,52 @@
-import { Timestamp } from "firebase/firestore";
+import { TaskRepository } from "./../repositories";
+import { TaskService } from "../services";
 
-import { HistoryController } from ".";
-import FireController from "./FireController";
-
-import { TaskRef } from "../models";
-import { TaskSchema } from "../schemas";
 import type { ITask } from "../../types";
 
-class Controller extends FireController<ITask> {
-  constructor() {
-    super({
-      ref: TaskRef,
-      schema: TaskSchema,
-      _name: "Task",
-    });
+export class TaskController {
+  private service: TaskService;
+
+  constructor(props: { service: TaskService }) {
+    this.service = props.service;
   }
 
-  private castDateTask(task?: ITask): ITask {
-    return {
-      ...task,
-      timer: this.castDate(task?.timer as unknown as Timestamp),
-      created_at: this.castDate(task?.created_at as unknown as Timestamp),
-      closed_in: this.castDate(task?.closed_in as unknown as Timestamp),
-    };
+  async create(task: ITask) {
+    return this.service.create(task);
   }
 
-  public async create(task: ITask): Promise<ITask> {
-    const lastTaskNumber = await HistoryController.getLastTaskNumber();
-
-    await HistoryController.updateLastTaskNumber({
-      taskNumber: lastTaskNumber! + 1,
-    });
-
-    return super.create({
-      ...task,
-      number: lastTaskNumber! + 1,
-    });
+  async get(id: string) {
+    return this.service.get(id);
   }
 
-  public async get(id: string): Promise<ITask | undefined> {
-    const doc = await super.get(id);
-    if (!doc) return;
-
-    return this.castDateTask(doc);
+  async getTasks(projectId: string) {
+    return this.service.filter("projectId", "==", projectId);
   }
 
-  public async getTasks(projectId: string): Promise<ITask[]> {
-    const tasks = await super.getDocsWithProperty("projectId", projectId);
-
-    return tasks.map((task) => this.castDateTask(task));
+  async update(id: string, data: Partial<ITask>) {
+    return this.service.update(id, data);
   }
 
-  public async setStatus(
-    id: string,
-    newStatus: "open" | "close"
-  ): Promise<ITask | undefined> {
-    const task = await this.get(id);
+  async delete(id: string) {
+    await this.service.delete(id);
+  }
 
-    if (task && task.status !== newStatus) {
-      const updatedTask = await this.update(task.id, {
-        ...task,
+  async setStatus(id: string, newStatus: "open" | "close") {
+    const data = await this.service.get(id);
+
+    if (data && data.status !== newStatus) {
+      return this.service.update(id, {
+        ...data,
         status: newStatus,
         closed_in: newStatus === "close" ? new Date() : null,
       });
-
-      return this.castDateTask(updatedTask);
     }
   }
 }
 
-const TaskController = new Controller();
+const instance = new TaskController({
+  service: new TaskService({
+    repo: TaskRepository,
+  }),
+});
 
-export default TaskController;
+export default instance;

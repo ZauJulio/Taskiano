@@ -1,46 +1,12 @@
-import { addDoc, Timestamp } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { HistoryRepository } from "../repositories";
+import { HistoryService } from "../services";
 
-import FireController from "./FireController";
-import { HistoryRef } from "../models";
-import { HistorySchema } from "../schemas";
+import { getCurrentWeekday } from "../../utils";
 
-import {
-  getCurrentWeekday,
-  getDaysOfDifference,
-  weekdaysList,
-} from "../../utils";
+import type { IScoreRules, ITask } from "../../types";
 
-import type { IHistory, ITask } from "../../types";
-
-interface IRecordObject {
-  [key: string]: number;
-}
-
-interface IScoreRules {
-  [key: string]: {
-    [key: string]: IRecordObject;
-  };
-}
-
-class Controller extends FireController<IHistory> {
-  initialHistory: IHistory = {
-    userId: "",
-    score: 0,
-    updated_at: new Date(),
-    lastTaskNumber: -1,
-    weekdayTaskCount: {
-      mon: 0,
-      tue: 0,
-      wed: 0,
-      thu: 0,
-      fri: 0,
-      sat: 0,
-      sun: 0,
-    },
-  };
-
-  score_rules: IScoreRules = {
+export class HistoryController {
+  private score_rules: IScoreRules = {
     task: {
       close: {
         inTime: 2,
@@ -53,129 +19,60 @@ class Controller extends FireController<IHistory> {
     },
   };
 
-  constructor() {
-    super({
-      ref: HistoryRef,
-      schema: HistorySchema,
-      _name: "History",
-    });
+  private service: HistoryService;
+
+  constructor(props: { service: HistoryService }) {
+    this.service = props.service;
   }
 
-  public async update(_id: any, data: IHistory): Promise<IHistory | undefined> {
-    if (!_id) return;
-
-    const _data = {
-      ...data,
-      updated_at: this.castDate(data?.updated_at as unknown as Timestamp),
-    };
-
-    return super.update(_id, _data);
+  async getHistoryOfUser(userId?: string) {
+    return this.service.getHistoryOfUser(userId);
   }
 
-  public async get(id: string): Promise<IHistory | undefined> {
-    const doc = await super.get(id);
+  async getLastTaskNumber(userId: string) {
+    return (await this.getHistoryOfUser(userId)).lastTaskNumber;
+  }
+
+  async updateLastTaskNumber(props: { userId?: string; taskNumber?: number }) {
+    await this.service.updateLastTaskNumber(props);
+  }
+
+  async updateScore(props: { task?: ITask; action: string; userId?: string }) {
+    if (!props.task || !props.action || !props.userId) return;
+
+    const doc = await this.getHistoryOfUser(props.userId);
     if (!doc) return;
 
-    return {
+    const currTime = new Date().getTime();
+    const closed_in = props.task.closed_in ?? Infinity;
+
+    const type = "task";
+    const value = closed_in < currTime ? "inTime" : "outTime";
+    const score = doc.score + this.score_rules[type][props.action][value];
+
+    const currentWeekday = getCurrentWeekday();
+    const currentTaskCount = doc.weekdayTaskCount[currentWeekday];
+    const updated_at = new Date();
+
+    await this.service.update(doc?.id!, {
       ...doc,
-      updated_at: this.castDate(doc.updated_at as unknown as Timestamp),
-    };
-  }
-
-  public async init(userId: string) {
-    await this.Validator(this.initialHistory);
-    await addDoc(this.ref, { ...this.initialHistory, userId });
-  }
-
-  private async resetHistory(_history: IHistory) {
-    const lastUpdateDate = new Date(_history?.updated_at!);
-    const diff = getDaysOfDifference(lastUpdateDate);
-
-    let weekday = getCurrentWeekday();
-
-    Array.from({ length: diff }, () => {
-      _history.weekdayTaskCount[weekday] = 0;
-      weekday = weekdaysList[weekdaysList.indexOf(weekday) - 1];
+      score,
+      updated_at,
+      weekdayTaskCount: {
+        ...doc.weekdayTaskCount,
+        [currentWeekday]:
+          props.action === "close"
+            ? currentTaskCount + 1
+            : currentTaskCount - 1,
+      },
     });
-
-    return this.update(_history.id, _history);
-  }
-
-  public async getHistoryOfUser(userId?: string) {
-    const docs = await super.getDocsOfUser(
-      userId ?? getAuth().currentUser?.uid
-    );
-
-    return (await this.resetHistory(docs[0])) ?? docs[0];
-  }
-
-  public async getScore(id: string): Promise<number | undefined> {
-    const history = await this.get(id);
-    return history?.score;
-  }
-
-  public async getLastTaskNumber(userId?: string): Promise<number | undefined> {
-    const doc = await this.getHistoryOfUser(
-      userId ?? getAuth().currentUser?.uid
-    );
-
-    return doc.lastTaskNumber;
-  }
-
-  public async updateLastTaskNumber(props: {
-    userId?: string;
-    taskNumber?: number;
-  }): Promise<void> {
-    const doc = await this.getHistoryOfUser(
-      props.userId ?? getAuth().currentUser?.uid
-    );
-
-    if (doc) {
-      await this.update(doc.id, {
-        ...doc,
-        updated_at: this.castDate(doc.updated_at as unknown as Timestamp),
-        lastTaskNumber: props.taskNumber ?? doc.lastTaskNumber,
-      });
-    }
-  }
-
-  public async updateScore(props: {
-    task?: ITask;
-    action: string;
-    userId?: string;
-  }) {
-    const userId = props.userId ?? getAuth().currentUser?.uid;
-
-    if (props.task && props.action) {
-      const doc = await this.getHistoryOfUser(userId);
-
-      const currTime = new Date().getTime();
-      const closed_in = props.task.closed_in ?? Infinity;
-
-      const type = "task";
-      const value = closed_in < currTime ? "inTime" : "outTime";
-      const score = doc.score + this.score_rules[type][props.action][value];
-
-      const currentWeekday = getCurrentWeekday();
-      const currentTaskCount = doc.weekdayTaskCount[currentWeekday];
-      const updated_at = new Date();
-
-      await super.update(doc.id, {
-        ...doc,
-        score,
-        updated_at,
-        weekdayTaskCount: {
-          ...doc.weekdayTaskCount,
-          [currentWeekday]:
-            props.action === "close"
-              ? currentTaskCount + 1
-              : currentTaskCount - 1,
-        },
-      });
-    }
   }
 }
 
-const HistoryController = new Controller();
+const instance = new HistoryController({
+  service: new HistoryService({
+    repo: HistoryRepository,
+  }),
+});
 
-export default HistoryController;
+export default instance;

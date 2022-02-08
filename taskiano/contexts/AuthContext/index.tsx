@@ -7,26 +7,27 @@ import { GlobalController, UserController } from "../../lib";
 import { ToastDisconnected, ToastTrySignInAgain } from "../../utils/toasts";
 
 import type { IAuthState, IUser } from "../../types";
+import { useRouter } from "next/router";
 
 interface IAuthContextProvider {
   authState: IAuthState;
-  pathname: string;
-  onDisconnect: () => void;
   children: ReactNode;
 }
 
 export function AuthContextProvider(props: IAuthContextProvider) {
+  const router = useRouter();
+
   const [user, setUser] = useState<IUser>();
   const [authenticated, setAuthenticated] = useState(false);
 
   const { authUser, mounted, signIn, signOut } = props.authState;
 
   const isDisconnected = () => {
-    return !authUser && mounted && props.pathname !== "/";
+    return !authUser && mounted && router.pathname !== "/";
   };
 
   const isLogging = () => {
-    return props.pathname === "/" || props.pathname === "/login";
+    return router.pathname === "/" || router.pathname === "/login";
   };
 
   const handleAuth = (u: IUser) => {
@@ -75,7 +76,7 @@ export function AuthContextProvider(props: IAuthContextProvider) {
     if (authUser && mounted) {
       fetchUser();
     } else if (isDisconnected()) {
-      !isLogging() ? props.onDisconnect() : ToastDisconnected();
+      !isLogging() ? router.push("/login") : ToastDisconnected();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

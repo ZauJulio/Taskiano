@@ -12,7 +12,7 @@ function RenderTime(props: IRenderTime) {
   if (props.remainingTime === 0)
     return (
       <div className={`${styles.countdownContent} ${styles.over}`}>
-        0
+        •
       </div>
     );
 

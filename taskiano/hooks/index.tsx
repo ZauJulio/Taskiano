@@ -1,7 +1,17 @@
-import { useAuth } from "./useAuth";
+import useAuthHook from "./useAuthHook";
 import useFirebaseAuth from "./useFirebaseAuth";
+import { useAuth } from "./useAuth";
+import { useTasks } from "./useTasks";
 import { useHistory } from "./useHistory";
 import { useProjects } from "./useProjects";
-import { useTasks } from "./useTasks";
+import { useRouterLoading } from "./useRouterLoading";
 
-export { useAuth, useHistory, useProjects, useTasks, useFirebaseAuth };
+export {
+  useAuthHook,
+  useAuth,
+  useHistory,
+  useProjects,
+  useTasks,
+  useFirebaseAuth,
+  useRouterLoading,
+};

@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "firebase": "9.6.0",
-    "next": "12.0.5",
+    "next": "12.0.9",
     "pathseg": "^1.2.1",
     "react": "^17.0.2",
     "react-countdown-circle-timer": "^2.5.3",
@@ -48,6 +48,7 @@
     "babel-jest": "^27.4.5",
     "eslint": "<8.0.0",
     "eslint-config-next": "12.0.4",
+    "eslint-config-prettier": "^8.3.0",
     "jest": "^27.4.5",
     "sass": "^1.36.0",
     "secure-env": "^1.2.0",

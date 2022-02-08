@@ -26,9 +26,9 @@ function useFormState(props: IFormState) {
   const onChangeDate = useCallback(
     (e: any) => {
       const dateTime = new Date(e.target ? e.target.value : e);
-      const date = dateTime.toISOString().substr(0, 11);
+      const date = dateTime.toISOString().substring(0, 11);
       const localDateTime =
-        date + dateTime.toLocaleString("pt-BR").substr(11, 5);
+        date + dateTime.toLocaleString("pt-BR").substring(11);
 
       setTimer(dateTime);
       setTimerShow(localDateTime);
@@ -72,7 +72,7 @@ function useFormState(props: IFormState) {
       toast.success("Tudo certo 🦄");
       props.close();
     } catch (err) {
-      console.log(err);
+      console.error(err);
       toast.error("Ah não! Verifique os dados 🤯");
     }
   };

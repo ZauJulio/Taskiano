@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import type { NextPage } from "next";
+import { useRouter } from "next/router";
 
 import {
   FacebookAuthProvider,
@@ -19,10 +19,18 @@ import Logo from "../../components/Logo";
 import Particles from "../../components/pages/Login/Particles";
 import ButtonProvider from "../../components/pages/Login/ButtonProvider";
 
+import { NextPage } from "../../types";
+
 import styles from "./styles.module.scss";
 
 const Login: NextPage = () => {
+  const router = useRouter();
   const signIn = useAuth((ctx) => ctx.signIn);
+
+  const handleSignIn = (provider: string) => {
+    signIn(provider);
+    router.push("/home");
+  };
 
   return (
     <div className={styles.pageAuth}>
@@ -37,7 +45,7 @@ const Login: NextPage = () => {
       </Head>
 
       <aside className={styles.sidebar}>
-        <Particles />
+        {/* <Particles /> */}
 
         <div className={styles.logo}>
           <div className={styles.logoContainer}>
@@ -54,7 +62,7 @@ const Login: NextPage = () => {
           <ButtonProvider
             name="Google"
             provider={GoogleAuthProvider.PROVIDER_ID}
-            handleSingIn={signIn}
+            handleSingIn={handleSignIn}
           >
             <FcGoogle />
           </ButtonProvider>
@@ -62,7 +70,7 @@ const Login: NextPage = () => {
           <ButtonProvider
             name="Twitter"
             provider={TwitterAuthProvider.PROVIDER_ID}
-            handleSingIn={signIn}
+            handleSingIn={handleSignIn}
           >
             <AiFillTwitterCircle color="#57A9E3" />
           </ButtonProvider>
@@ -70,7 +78,7 @@ const Login: NextPage = () => {
           <ButtonProvider
             name="Facebook"
             provider={FacebookAuthProvider.PROVIDER_ID}
-            handleSingIn={signIn}
+            handleSingIn={handleSignIn}
           >
             <FaFacebook color="#3D5694" />
           </ButtonProvider>
@@ -78,7 +86,7 @@ const Login: NextPage = () => {
           <ButtonProvider
             name="GitHub"
             provider={GithubAuthProvider.PROVIDER_ID}
-            handleSingIn={signIn}
+            handleSingIn={handleSignIn}
           >
             <AiFillGithub />
           </ButtonProvider>

@@ -12,7 +12,7 @@ export interface Weekdays {
 interface IHistory {
   id?: string;
   score: number;
-  updated_at?: string | Date;
+  updated_at?: string | Date | null;
   weekdayTaskCount: Weekdays;
   lastTaskNumber?: number;
 

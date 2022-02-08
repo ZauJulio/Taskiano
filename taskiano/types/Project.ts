@@ -1,7 +1,7 @@
 interface IProject {
   id?: string;
   name?: string;
-  created_at?: Date;
+  created_at?: Date | null;
   closed_in?: Date | null;
   description?: string;
   color?: number;

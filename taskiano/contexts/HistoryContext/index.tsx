@@ -17,20 +17,27 @@ export function HistoryContextProvider(props: IHistoryContextProvider) {
   const [weekdays, setWeekdays] = useState<IWeekday[]>([]);
 
   const user = useAuth((ctx) => ctx.user);
+  const authenticated = useAuth((ctx) => ctx.authenticated);
 
   const updateTaskCount = async (task: ITask, action: "open" | "close") => {
-    await HistoryController.updateScore({ task, action });
+    await HistoryController.updateScore({ task, action, userId: user.id });
 
-    HistoryController.getHistoryOfUser(user.id).then((_history) => {
+    await HistoryController.getHistoryOfUser(user.id).then((_history) => {
       setHistory(_history);
     });
   };
 
   useEffect(() => {
-    HistoryController.getHistoryOfUser(user?.id).then((_history) =>
-      setHistory(() => ({ ..._history }))
-    );
-  }, [user]);
+    async function updateHistory() {
+      if (user && user.id && authenticated) {
+        await HistoryController.getHistoryOfUser(user.id).then((_history) =>
+          setHistory(() => ({ ..._history }))
+        );
+      }
+    }
+
+    updateHistory();
+  }, [user, authenticated]);
 
   useEffect(() => {
     setWeekdays(

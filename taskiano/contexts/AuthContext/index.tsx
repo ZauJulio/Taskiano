@@ -1,14 +1,17 @@
 import { ReactNode, useEffect, useState } from "react";
-import type { NextRouter } from "next/router";
 
 import { AuthContext } from "./Provider";
-import { UserController } from "../../lib";
-import useFirebaseAuth from "../../hooks/useFirebaseAuth";
+
+import { GlobalController, UserController } from "../../lib";
+
 import { ToastDisconnected, ToastTrySignInAgain } from "../../utils/toasts";
-import type { IUser } from "../../types";
+
+import type { IAuthState, IUser } from "../../types";
 
 interface IAuthContextProvider {
-  router: NextRouter;
+  authState: IAuthState;
+  pathname: string;
+  onDisconnect: () => void;
   children: ReactNode;
 }
 
@@ -16,38 +19,36 @@ export function AuthContextProvider(props: IAuthContextProvider) {
   const [user, setUser] = useState<IUser>();
   const [authenticated, setAuthenticated] = useState(false);
 
-  const fireAuth = useFirebaseAuth({
-    loginPage: "/",
-    router: props.router,
-    onSignOut: () => {
-      setUser(undefined);
-      setAuthenticated(false);
-    },
-  });
+  const { authUser, mounted, signIn, signOut } = props.authState;
 
   const isDisconnected = () => {
-    return !fireAuth.user && fireAuth.mounted && props.router.pathname !== "/";
+    return !authUser && mounted && props.pathname !== "/";
+  };
+
+  const isLogging = () => {
+    return props.pathname === "/" || props.pathname === "/login";
   };
 
   const handleAuth = (u: IUser) => {
     setUser(u);
     setAuthenticated(true);
-    props.router.push("/home");
+  };
+
+  const createUser = async () => {
+    if (!authUser) return;
+
+    return GlobalController.createUserRecord(
+      UserController.assembleUser(authUser)
+    );
   };
 
   const fetchUser = async () => {
-    if (!fireAuth.user) return;
+    if (!authUser) return;
     let userRecord;
 
     try {
-      userRecord = await UserController.get(fireAuth.user.uid);
-
-      if (!userRecord) {
-        userRecord = await UserController.create(
-          UserController.assembleUser(fireAuth.user),
-          fireAuth.user.uid
-        );
-      }
+      userRecord = await UserController.get(authUser.uid);
+      userRecord = userRecord ?? (await createUser());
 
       userRecord && handleAuth(userRecord);
     } catch (e) {
@@ -56,27 +57,38 @@ export function AuthContextProvider(props: IAuthContextProvider) {
     }
   };
 
-  useEffect(() => {
-    setAuthenticated(fireAuth.user ? true : false);
-  }, [fireAuth.user]);
+  const deleteAccount = async () => {
+    user && user.id && (await GlobalController.deleteUserRecord(user.id));
+    return signOut();
+  };
 
   useEffect(() => {
-    if (fireAuth.user && fireAuth.mounted) fetchUser();
-    else if (isDisconnected()) {
-      if (props.router.pathname !== "/" && props.router.pathname !== "/login")
-        ToastDisconnected();
-        props.router.push("/login");
+    if (!authUser) {
+      setUser(undefined);
+      setAuthenticated(false);
+    } else {
+      setAuthenticated(true);
     }
+  }, [authUser]);
+
+  useEffect(() => {
+    if (authUser && mounted) {
+      fetchUser();
+    } else if (isDisconnected()) {
+      !isLogging() ? props.onDisconnect() : ToastDisconnected();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fireAuth.user, fireAuth.mounted]);
+  }, [authUser, mounted]);
 
   return (
     <AuthContext.Provider
       value={{
         user,
         authenticated,
-        signIn: fireAuth.signIn,
-        signOut: fireAuth.signOut,
+        deleteAccount,
+        signIn: signIn,
+        signOut: signOut,
       }}
     >
       {props.children}

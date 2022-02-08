@@ -2,7 +2,7 @@ import { ReactNode, useCallback, useState, useEffect } from "react";
 
 import { TasksContext } from "./Provider";
 
-import { TaskController } from "../../lib";
+import { HistoryController, TaskController } from "../../lib";
 import { useAuth, useHistory, useProjects } from "../../hooks";
 import { calcRemainingTime } from "../../utils";
 
@@ -23,6 +23,7 @@ export function TasksContextProvider(props: ITasksContextProvider) {
 
   const projects = useProjects((ctx) => ctx.projects);
   const updateTaskCount = useHistory((ctx) => ctx.updateTaskCount);
+  const user = useAuth((ctx) => ctx.user);
   const authenticated = useAuth((ctx) => ctx.authenticated);
 
   const fetchTasks = useCallback(async () => {
@@ -71,9 +72,25 @@ export function TasksContextProvider(props: ITasksContextProvider) {
 
   const create = useCallback(
     async (data: ITask) => {
-      insertTask(await TaskController.create(data));
+      const latestTaskNumber = await HistoryController.getLastTaskNumber(
+        user.id
+      );
+
+      if (latestTaskNumber) {
+        const task = await TaskController.create({
+          ...data,
+          number: latestTaskNumber + 1,
+        });
+
+        await HistoryController.updateLastTaskNumber({
+          userId: user.id,
+          taskNumber: latestTaskNumber + 1,
+        });
+
+        insertTask(task);
+      }
     },
-    [insertTask]
+    [insertTask, user]
   );
 
   const update = useCallback(

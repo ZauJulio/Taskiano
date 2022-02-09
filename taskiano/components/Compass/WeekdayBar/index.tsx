@@ -33,7 +33,7 @@ function WeekdayBar(props: IWeekdayBar) {
         <p>{translateDays[props.day]}</p>
         <div className={styles.tasksDone}>
           <h1>{props.value}</h1>
-          <p>{"Task's"}</p>
+          <p>{'Task\'s'}</p>
         </div>
       </div>
     </div>

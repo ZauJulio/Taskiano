@@ -18,6 +18,6 @@ export const ToastFoundedEmail = () => toast.success('Encontramos você 🌈')
 export const ToastEmailExists = (providerId?: string, email?: string) =>
   toast.warn(
     `Esse email já é utilizado por ${providerId} para ${email} entrar.\n` +
-      "Vincule os email's para continuar.\n" +
+      'Vincule os email\'s para continuar.\n' +
       'Você ainda porderá criar novos projetos e tarefas.'
   )

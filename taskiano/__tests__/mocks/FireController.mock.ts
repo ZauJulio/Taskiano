@@ -24,14 +24,9 @@ class FireController<T> {
   }
 
   public async Validator(data: T, schema: SchemaOf<any> = this.schema) {
-    try {
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err: any) {
-      console.error(this._name);
-      throw new Error(err);
-    }
+    await schema.validate(data, {
+      abortEarly: false,
+    });
   }
 
   public async index(): Promise<any[]> {
@@ -91,8 +86,6 @@ class FireController<T> {
   }
 
   public async update(_id: string, data: T): Promise<T | undefined> {
-    await this.Validator(data);
-
     this._data = this._data.filter((_doc) => _doc.id !== _id);
     this._data.push({ ...(data as any), id: _id });
 

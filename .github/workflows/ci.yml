@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '30 22 * * 3'
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install deps
+        run: yarn install
+        working-directory: ./taskiano
+        
+      - name: Linting
+        run: yarn lint
+        working-directory: ./taskiano
+        env:
+          SECURE_ENV: ${{ secrets.SECURE_ENV }}
+          
+      # - name: Test
+      #   run: yarn test
+        
+      - name: Build
+        run: yarn build
+        working-directory: ./taskiano
+        env:
+          SECURE_ENV: ${{ secrets.SECURE_ENV }}

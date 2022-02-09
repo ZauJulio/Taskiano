@@ -12,7 +12,7 @@ class Controller extends FireController<IUser> {
       ref: "users",
       schema: UserSchema,
       _name: "User",
-      _data: collections.user,
+      _data: collections.users,
     });
   }
 
@@ -39,6 +39,18 @@ class Controller extends FireController<IUser> {
 
   public ErrorAccountExists(code: string) {
     return code === "auth/account-exists-with-different-credential";
+  }
+
+  public async get(id: string): Promise<IUser | undefined> {
+    return super.get(id);
+  }
+
+  public async delete(id: string): Promise<void> {
+    await super.delete(id);
+  }
+
+  public async update(_id: string, data: IUser): Promise<IUser | undefined> {
+    return super.update(_id, data);
   }
 }
 

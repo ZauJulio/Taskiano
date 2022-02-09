@@ -19,7 +19,7 @@ class Controller extends FireController<IProject> {
     const projects: string[] = [];
 
     getInitialProjects().forEach(async (ex) => {
-      const { id: projectId } = await this.create({ ...ex.project, userId });
+      const { id: projectId } = await super.create({ ...ex.project, userId });
 
       ex.tasks.forEach((task) => TaskController.create({ ...task, projectId }));
 
@@ -30,9 +30,9 @@ class Controller extends FireController<IProject> {
   }
 
   public async setArchived(id: string, hasArchived: boolean): Promise<void> {
-    const project = await this.get(id);
+    const project = await super.get(id);
 
-    project && (await this.update(id, { ...project, hasArchived }));
+    project && (await super.update(id, { ...project, hasArchived }));
   }
 }
 

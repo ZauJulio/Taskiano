@@ -12,19 +12,34 @@
 
 O projeto Taskiano é um software de gestão de tarefas que visa a otimização de tempo e auxilia na tomada de decisões do usuário, monitorando o ciclo de vida de cada tarefa registrada, gerando relátorios para análise de desempenho de quem executa a tarefa que foi atribuída.
 
-## Documentos
+## Equipe
 
 | Nome                                  | Link                                                                                       |
 | ------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Plano de Iteração                     | [Clique aqui ➡️](docs/doc-iteracao.md)                                                     |
-| Documento de Visão                    | [Clique aqui ➡️](docs/doc-visao.md)                                                        |
-| Documento de Modelos                  | [Clique aqui ➡️](docs/doc-modelos.md)                                                      |
-| Lista de User Stories                 | [Clique aqui ➡️](docs/doc-userstories.md)                                                  |
-| Projeto Arquitetural do Software      | [Clique aqui ➡️](docs/doc-arq.md)                                                          |
-| Relatório de Testes de Módulo/Sistema | [Clique aqui ➡️](docs/doc-us-tests.md)                                                     |
-| Análise de Pontos de Função - APF     | [Clique aqui ➡️](docs/doc-apf.md)                                                          |
-| Termo de Abertura de Projeto          | [Clique aqui ➡️](docs/doc-project-charter.md)                                              |
-| Figma: Conceito e design              | [Clique aqui ➡️](https://www.figma.com/file/Mflem8uxMXESz9KeoSydEo/Platform?node-id=0%3A1) |
+| Roberto Costa Tupinambá               | [Clique aqui ➡️](https://github.com/RobertoCostaTupinamba)                                 |
+| Arthur dos Santos Medeiros            | [Clique aqui ➡️](https://github.com/arthurmdros)                                           |
+| Paulo Vítor de Medeiros Brito         | [Clique aqui ➡️](https://github.com/linhox)                                                |
+| Zaú Júlio Araújo Galvão               | [Clique aqui ➡️](https://github.com/zauJulio)                                              |
+
+
+## Documentos
+
+| Nome                                  | Link                                                                                               |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------|
+| Plano de Iteração                     | [Clique aqui ➡️](docs/doc-iteracao.md)                                                            |
+| Documento de Visão                    | [Clique aqui ➡️](docs/doc-visao.md)                                                               |
+| Documento de Modelos                  | [Clique aqui ➡️](docs/doc-modelos.md)                                                             |
+| Lista de User Stories                 | [Clique aqui ➡️](docs/USERSTORIES.md)                                                         |
+| Projeto Arquitetural do Software      | [Clique aqui ➡️](docs/doc-arq.md)                                                                 |
+| Relatório de Testes de Módulo/Sistema | [Clique aqui ➡️](docs/doc-us-tests.md)                                                            |
+| Análise de Pontos de Função - APF     | [Clique aqui ➡️](docs/doc-apf.md)                                                                 |
+| Termo de Abertura de Projeto          | [Clique aqui ➡️](docs/doc-project-charter.md)                                                     |
+| Figma: Conceito e design              | [Clique aqui ➡️](https://www.figma.com/file/Mflem8uxMXESz9KeoSydEo/Platform?node-id=0%3A1)        |
+| Requisitos                            | [Clique aqui ➡️](docs/Requisitos.md)                                                              |
+| Teste de Unidade                      | [Clique aqui ➡️](docs/TESTE_UNIDADE.md)                                                           |
+| Teste de Integração                   | [Clique aqui ➡️](docs/TESTE_INTEGRACAO.md)                                                        |
+| Cobertura dos testes                  | [Clique aqui ➡️](docs/COBERTURA_TESTES.md)                                                        |
+| Apresentação sobre o projeto          | [Clique aqui ➡️](bit.ly/taskiano-slides)                                                          |
 
 ## Tecnologias utilizadas para o desenvolvimento
 

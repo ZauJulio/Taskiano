@@ -9,27 +9,28 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 ## Histórico de revisões
 
-| Data       | Versão |                           Descrição                            | Autor                    |
-| :--------- | :----: | :------------------------------------------------------------: | :----------------------- |
-| 25/06/2021 | 0.0.1  |               Template e descrição do documento                | Wanessa da Silva Bezerra |
-| 29/06/2021 | 0.0.2  |                Detalhamento do User Story US01                 | Lucas da Silva santos    |
-| 05/07/2021 | 0.1.0  |                  Correções do User Story US01                  | Zaú Júlio Araújo Galvão  |
-| 05/07/2021 | 0.2.0  |                Detalhamento do User Story US02                 | Wanessa da Silva Bezerra |
-| 06/07/2021 | 0.2.1  |       Adição dos Testes de Aceitação do User Story US01        | Zaú Júlio Araújo Galvão  |
-| 16/07/2021 | 1.0.0  | Documento completo com o detalhamento de todos os User Stories |                          |
+| Data       | Versão |                              Descrição                            | Autor                    |
+| :--------- | :----: | :---------------------------------------------------------------: | :----------------------- |
+| 25/06/2021 | 0.0.1  |                  Template e descrição do documento                | Wanessa da Silva Bezerra |
+| 29/06/2021 | 0.0.2  |                   Detalhamento do User Story US01                 | Lucas da Silva santos    |
+| 05/07/2021 | 0.1.0  |                     Correções do User Story US01                  | Zaú Júlio Araújo Galvão  |
+| 05/07/2021 | 0.2.0  |                   Detalhamento do User Story US02                 | Wanessa da Silva Bezerra |
+| 06/07/2021 | 0.2.1  |          Adição dos Testes de Aceitação do User Story US01        | Zaú Júlio Araújo Galvão  |
+| 16/07/2021 | 1.0.0  |    Documento completo com o detalhamento de todos os User Stories |                          |
+| 17/01/2022 | 1.1.0  | Correções no detalhamento de user stories e atribuição dos testes | Paulo Vítor              |
 
 ### User Story US01 - Manter Usuário
 
 |               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Descrição** | O sistema deve manter um cadastro de usuário que tem acesso ao sistema via login e senha. Um usuário tem os atributos name, id, email, username, data de nascimento, status, password, avatarURL. O email será o login e ele pode registrar-se diretamente no sistema, o avatarURL é um link para uma foto de seu perfil. Além disso o usuário poderá alterar alguns dados, como o e-mail ou a senha. O usuário administrador do sistema pode realizar as operações de adicionar, alterar, remover e listar os usuários comuns do sistema. |
+| **Descrição** | O sistema deve manter um cadastro de usuário que tem acesso ao sistema via login e senha. Um usuário tem os atributos name, id, email, username, data de nascimento, avatarURL. O usuário pode registrar-se no sistema através da sua rede social de escola, o avatarURL é um link para uma foto de seu perfil. Além disso o usuário poderá alterar alguns dados, como o e-mail ou a senha. O usuário administrador do sistema pode realizar as operações de adicionar, alterar, remover e listar os usuários comuns do sistema. |
 
 | **Requisitos envolvidos** |                                |
 | ------------------------- | :----------------------------- |
 | RF15                      | Cadastrar Usuário              |
 | RF16                      | Alterar Usuário                |
 | RF17                      | Consultar Usuário              |
-| RF18                      | Vizualizar detalhes do Usuário |
+| RF18                      | Visualizar detalhes do Usuário |
 | RF19                      | Excluir Usuário                |
 
 |                         |           |
@@ -50,11 +51,15 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA01.06**              | O usuário, na tela de detalhes, realiza alterações nas informações e seleciona para salvar,ocorre uma falha na atualização e a mensagem "Problemas técnicos, Tente novamente..." é exbida. O usuário continua na mesma tela até solicitar para salvar novamente ou cancelar as alterações.                                                   |
 | **TA01.07**              | O usuário, na tela de detalhes, realiza alterações nas informações e seleciona para salvar, o usuário preenche incorretamente alguma informação e a mensagem "Ops! Tem alguma coisa errada, verifique os dados e tente novamente". O usuário continua na mesma tela até alterar e solicitar para salvar novamente ou cancelar as alterações. |
 
+| **Responsável pelos Testes** |
+| ---------------------------- |
+|        Roberto Costa         |
+
 ### User Story US02 - Manter Tarefa
 
 |               |                                                                                                                                                                                                                                    |
 | ------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Descrição** | O sistema deve manter um cadastro de tarefas. Uma tarefa tem os atributos id, fixed, name, note, super, createDate, completeDate, priority, timer. O código será a chave primeira e os atributos serão registrados pelo o usuário. |
+| **Descrição** | O sistema deve manter um cadastro de tarefas. Uma tarefa tem os atributos projectId, title, number, remainingTime, note, fixed, priority, status, created_at, closed_in, timer. O código será a chave primeira e os atributos serão registrados pelo o usuário. |
 
 | **Requisitos envolvidos** |                                           |
 | ------------------------- | :---------------------------------------- |
@@ -82,6 +87,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA02.05**              | O usuário informa, na tela Tarefa, a tarefa que ele deseja excluir corretamente, ao clicar em salvar ele é notificado com uma mensagem de sucesso. Mensagem: Tarefa deletada com sucesso.                                             |
 | **TA02.06**              | O usuário informa, na tela Tarefa, os dados da tarefa que deseja excluir incorretamente, ao clicar em salvar ele é notificado com uma mensagem de erro. A tarefa não foi deletado, o código da tarefa não foi informado corretamente. |
 
+| **Responsável pelos Testes** |
+| ---------------------------- |
+|          Zaú Júlio           |
+
 ### User Story US03 - Manter Projeto
 
 |               |                                                                                                                                                                                                                                                    |
@@ -107,9 +116,43 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |                                                                                                                                                                                                        |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Código**               | **Descrição**                                                                                                                                                                                          |
-| **TA02.01**              | Na tela de criação de projetos o usuário preenche todos os campos referente ao projeto a ser criado, caso não ocorra nada de errado é exibida uma mensagem de sucesso na tela.                         |
-| **TA02.02**              | Quando um projeto é finalizado ou por algum motivo interrompido, o usuário criador do projeto tem a opção de excluí-lo, logo após é exibida uma mensagem de sucesso na tela.                           |
-| **TA02.03**              | Com um projeto criado é possível realizar alterações em dados cadastrais que o usuário criador tem acesso como o nome do projeto, cor, descrição e o status para definir se ele está ou não arquivado. |
-| **TA02.04**              | Com um projeto criado é possível consultá-lo atráves do nome do projeto, descrição, data e status, tendo como retorno uma instância de busca.                                                          |
-| **TA02.05**              | Com um projeto criado é possível colocar prioridades para que projetos mais importantes tenham preferência e sejam concluídos.                                                                         |
-| **TA02.06**              | Quando um projeto é finalizado, ele é arquivado para auxiliar na organização dos projetos de usuário.                                                                                                  |
+| **TA03.01**              | Na tela de criação de projetos o usuário preenche todos os campos referente ao projeto a ser criado, caso não ocorra nada de errado é exibida uma mensagem de sucesso na tela.                         |
+| **TA03.02**              | Quando um projeto é finalizado ou por algum motivo interrompido, o usuário criador do projeto tem a opção de excluí-lo, logo após é exibida uma mensagem de sucesso na tela.                           |
+| **TA03.03**              | Com um projeto criado é possível realizar alterações em dados cadastrais que o usuário criador tem acesso como o nome do projeto, cor, descrição e o status para definir se ele está ou não arquivado. |
+| **TA03.04**              | Com um projeto criado é possível consultá-lo atráves do nome do projeto, descrição, data e status, tendo como retorno uma instância de busca.                                                          |
+| **TA03.05**              | Com um projeto criado é possível colocar prioridades para que projetos mais importantes tenham preferência e sejam concluídos.                                                                         |
+| **TA03.06**              | Quando um projeto é finalizado, ele é arquivado para auxiliar na organização dos projetos de usuário.                                                                                                  |
+
+| **Responsável pelos Testes** |
+| ---------------------------- |
+|        Arthur Santos         |
+
+### User Story US04 - Manter Histórico
+
+|               |                                                                                                                                                                                                                                                    |
+| ------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Descrição** | O sistema deve manter o histórico de tarefas de cada usuário. Um histórico contém os seguintes atributos: userId, score, updated_at, weekdayTaskCount, lastTaskNumber. Cada histórico contabiliza um score de acordo com o número de tarefas do usuário, um contador de tarefas para cada dia da semana. |
+
+| **Requisitos envolvidos** |                                            |
+| ------------------------- | :----------------------------------------- |
+| RF21                      | Criar Histórico de Usuário                 |
+| RF22                      | Atualizar Score do Histórico               |
+| RF23                      | Atualizar Última Tarefa Adicionada         |
+
+|                         |           |
+| ----------------------- | :-------- |
+| **Prioridade**          | Essencial |
+| **Estimativa**          | 8 h       |
+| **Tempo Gasto (real):** |           |
+| **Tamanho Funcional**   | 7 PF      |
+
+| Testes de Aceitação (TA) |                                                                                                                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Código**               | **Descrição**                                                                                                                                                                                          |
+| **TA04.01**              | Na tela HOME será exibido o histórico do usuário, mostrando corretamente os detalhes do seu uso da plataforma.                                                                                         |
+| **TA04.02**              | Quando o status de uma tarefa tiver seu status atualizado, o score do usuário será atualizado no histórico.                                                                                            |
+| **TA04.03**              | Quando o usuário adicionar uma nova tarefa, a última tarefa adicionada será atualizada no histórico do usuário, exibindo a mais recente.                                                               |
+
+| **Responsável pelos Testes** |
+| ---------------------------- |
+|        Paulo Vítor           |

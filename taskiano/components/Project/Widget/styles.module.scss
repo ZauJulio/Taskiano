@@ -1,4 +1,4 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
 .projectWidget {
   @include flex-box($direction: column, $align: center);
@@ -42,7 +42,7 @@
 
       left: 50%;
       bottom: 0;
-      content: "";
+      content: '';
 
       height: 2px;
       width: 0;

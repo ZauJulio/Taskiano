@@ -1,21 +1,21 @@
-import React from 'react';
+import React from 'react'
 
-import { GiAlarmClock } from 'react-icons/gi';
-import { BsCalendarFill } from 'react-icons/bs';
+import { GiAlarmClock } from 'react-icons/gi'
+import { BsCalendarFill } from 'react-icons/bs'
 
-import { selectColorByTime } from '../../utils';
+import { selectColorByTime } from '../../utils'
 
-import colors from '../../styles/colors';
-import styles from './styles.module.scss';
+import colors from '../../styles/colors'
+import styles from './styles.module.scss'
 
 interface IClocktimer {
-  remainingTime?: number;
+  remainingTime?: number
 }
 
 export function ClockTimer({ remainingTime = 0 }: IClocktimer) {
   const style = {
-    backgroundColor: selectColorByTime(remainingTime),
-  };
+    backgroundColor: selectColorByTime(remainingTime)
+  }
 
   return (
     <>
@@ -29,5 +29,5 @@ export function ClockTimer({ remainingTime = 0 }: IClocktimer) {
         </div>
       )}
     </>
-  );
+  )
 }

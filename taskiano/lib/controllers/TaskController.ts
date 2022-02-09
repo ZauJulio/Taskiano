@@ -1,52 +1,43 @@
-import { TaskRepository } from './../repositories';
-import { TaskService } from '../services';
+import { TaskService } from '../services'
 
-import type { ITask } from '../../types';
+import type { ITask } from '../../types'
 
 export class TaskController {
-  private service: TaskService;
+  private service: TaskService
 
   constructor(props: { service: TaskService }) {
-    this.service = props.service;
+    this.service = props.service
   }
 
   async create(task: ITask) {
-    return this.service.create(task);
+    return this.service.create(task)
   }
 
   async get(id: string) {
-    return this.service.get(id);
+    return this.service.get(id)
   }
 
   async getTasks(projectId: string) {
-    return this.service.filter('projectId', '==', projectId);
+    return this.service.filter('projectId', '==', projectId)
   }
 
   async update(id: string, data: Partial<ITask>) {
-    return this.service.update(id, data);
+    return this.service.update(id, data)
   }
 
   async delete(id: string) {
-    await this.service.delete(id);
+    await this.service.delete(id)
   }
 
   async setStatus(id: string, newStatus: 'open' | 'close') {
-    const data = await this.service.get(id);
+    const data = await this.service.get(id)
 
     if (data && data.status !== newStatus) {
       return this.service.update(id, {
         ...data,
         status: newStatus,
-        closed_in: newStatus === 'close' ? new Date() : null,
-      });
+        closed_in: newStatus === 'close' ? new Date() : null
+      })
     }
   }
 }
-
-const instance = new TaskController({
-  service: new TaskService({
-    repo: TaskRepository,
-  }),
-});
-
-export default instance;

@@ -1,4 +1,4 @@
-import { IProject } from '../../../types';
+import { IProject } from '../../../types'
 
 export function getProjectsInitalContext(): IProject[] {
   return [
@@ -7,21 +7,21 @@ export function getProjectsInitalContext(): IProject[] {
       description: '1º Projeto',
       created_at: new Date(),
       closed_in: null,
-      color: 11235583, // Purple: #ab70ff
+      color: 11235583 // Purple: #ab70ff
     },
     {
       name: 'More One',
       description: '1º Projeto',
       created_at: new Date(),
       closed_in: null,
-      color: 16740437, // OrangeDark: #ff7055
+      color: 16740437 // OrangeDark: #ff7055
     },
     {
       name: 'Sobre',
       description: 'Algumas informações :)',
       created_at: new Date(),
       closed_in: null,
-      color: 16752697, // Orange: #ffa039
-    },
-  ];
+      color: 16752697 // Orange: #ffa039
+    }
+  ]
 }

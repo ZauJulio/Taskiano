@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import Modal from '../../Modal';
+import Modal from '../../Modal'
 
-import EditorTask from '../Editor';
+import EditorTask from '../Editor'
 
 interface ICreateTask {
-  projectColor?: string;
-  projectId?: string;
-  close: () => void;
+  projectColor?: string
+  projectId?: string
+  close: () => void
 }
 
 function CreateTask(props: ICreateTask) {
@@ -15,7 +15,7 @@ function CreateTask(props: ICreateTask) {
     <Modal close={props.close}>
       <EditorTask {...props} />
     </Modal>
-  );
+  )
 }
 
-export default CreateTask;
+export default CreateTask

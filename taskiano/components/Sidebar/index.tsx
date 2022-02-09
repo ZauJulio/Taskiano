@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import Logo from '../Logo';
-import styles from './styles.module.scss';
+import Logo from '../Logo'
+import styles from './styles.module.scss'
 
 interface ISidebar {
-  className?: string;
+  className?: string
 }
 
 function Sidebar(props: ISidebar) {
@@ -14,7 +14,7 @@ function Sidebar(props: ISidebar) {
         <Logo />
       </div>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

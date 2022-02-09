@@ -1,20 +1,20 @@
-import React, { memo } from 'react';
-import { FaTimes } from 'react-icons/fa';
-import { GiAlarmClock } from 'react-icons/gi';
-import { MdDone } from 'react-icons/md';
+import React, { memo } from 'react'
+import { FaTimes } from 'react-icons/fa'
+import { GiAlarmClock } from 'react-icons/gi'
+import { MdDone } from 'react-icons/md'
 
-import colors from '../../../../styles/colors';
-import styles from './styles.module.scss';
+import colors from '../../../../styles/colors'
+import styles from './styles.module.scss'
 
 interface IProjectStatus {
-  over: number;
-  timers: number;
-  done: number;
-  color?: string;
+  over: number
+  timers: number
+  done: number
+  color?: string
 }
 
 function ProjectStatusFC(props: IProjectStatus) {
-  const color = props.color || colors.highPurple;
+  const color = props.color || colors.highPurple
 
   return (
     <div
@@ -42,9 +42,9 @@ function ProjectStatusFC(props: IProjectStatus) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-const ProjectStatus = memo(ProjectStatusFC);
+const ProjectStatus = memo(ProjectStatusFC)
 
-export default ProjectStatus;
+export default ProjectStatus

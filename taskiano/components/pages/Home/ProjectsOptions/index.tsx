@@ -1,25 +1,25 @@
-import React from 'react';
+import React from 'react'
 
-import { AiOutlineUnorderedList } from 'react-icons/ai';
-import { BsGridFill } from 'react-icons/bs';
-import { RiAddFill } from 'react-icons/ri';
+import { AiOutlineUnorderedList } from 'react-icons/ai'
+import { BsGridFill } from 'react-icons/bs'
+import { RiAddFill } from 'react-icons/ri'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface IProjectsOptions {
   view: {
-    inWidget: () => boolean;
-    inList: () => boolean;
-    handleViewInwidgets: () => void;
-    handleViewInList: () => void;
-  };
-  handleAddProject: () => void;
+    inWidget: () => boolean
+    inList: () => boolean
+    handleViewInwidgets: () => void
+    handleViewInList: () => void
+  }
+  handleAddProject: () => void
 }
 
 function ProjectsOptions({ view, handleAddProject }: IProjectsOptions) {
   const optionSelected = (selected: boolean) => {
-    return selected ? styles.selected : '';
-  };
+    return selected ? styles.selected : ''
+  }
 
   return (
     <div className={styles.optionsContainer}>
@@ -47,7 +47,7 @@ function ProjectsOptions({ view, handleAddProject }: IProjectsOptions) {
 
       <span className={styles.separator} />
     </div>
-  );
+  )
 }
 
-export default ProjectsOptions;
+export default ProjectsOptions

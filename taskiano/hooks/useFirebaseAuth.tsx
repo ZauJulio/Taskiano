@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 import {
   fetchSignInMethodsForEmail,
@@ -11,41 +11,41 @@ import {
   FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
-  TwitterAuthProvider,
-} from 'firebase/auth';
+  TwitterAuthProvider
+} from 'firebase/auth'
 
-import { auth } from '../services/Firebase';
+import { auth } from '../services/Firebase'
 
-import { IAuthUser, IAuthState, IHookAuthProps } from '../types';
+import { IAuthUser, IAuthState, IHookAuthProps } from '../types'
 
 interface IAuth {
-  authUser: IAuthUser | null;
-  mounted: boolean;
+  authUser: IAuthUser | null
+  mounted: boolean
 }
 
 function useFirebaseAuth(props: IHookAuthProps): IAuthState {
   const [state, setState] = useState<IAuth>({
     authUser: auth.currentUser,
-    mounted: true,
-  });
+    mounted: true
+  })
 
   const fillAuth = (fireUser: IFirebaseUser | null) => {
     if (state.authUser !== fireUser) {
-      setState({ authUser: fireUser, mounted: true });
+      setState({ authUser: fireUser, mounted: true })
 
       if (props.areLoggedIn && fireUser) {
-        props.onSignInSuccess && props.onSignInSuccess();
+        props.onSignInSuccess && props.onSignInSuccess()
       }
     }
-  };
+  }
 
   const linkAccounts = (email: string) => {
     fetchSignInMethodsForEmail(auth, email).then((methods) => {
-      props.onLinkAccounts && props.onLinkAccounts(methods[0], email);
+      props.onLinkAccounts && props.onLinkAccounts(methods[0], email)
 
-      setTimeout(() => signInWithRedirect(auth, getProvider(methods[0])), 5000);
-    });
-  };
+      setTimeout(() => signInWithRedirect(auth, getProvider(methods[0])), 5000)
+    })
+  }
 
   const signIn = async (providerId: string) => {
     signInWithPopup(auth, getProvider(providerId))
@@ -53,55 +53,55 @@ function useFirebaseAuth(props: IHookAuthProps): IAuthState {
       .catch((error) => {
         ErrorAccountExists(error.code)
           ? linkAccounts(error.email)
-          : props.onSignInError && props.onSignInError();
-      });
-  };
+          : props.onSignInError && props.onSignInError()
+      })
+  }
 
   const signOut = async () => {
     auth.signOut().then(() => {
-      setState({ authUser: null, mounted: true });
+      setState({ authUser: null, mounted: true })
 
-      indexedDB.deleteDatabase('firebaseLocalStorageDb');
+      indexedDB.deleteDatabase('firebaseLocalStorageDb')
 
-      props.onSignOut && props.onSignOut();
-    });
-  };
+      props.onSignOut && props.onSignOut()
+    })
+  }
 
   useEffect(() => {
-    setState({ authUser: auth.currentUser, mounted: true });
+    setState({ authUser: auth.currentUser, mounted: true })
 
     getRedirectResult(auth)
       .then((fbUser) => fbUser && fillAuth(fbUser.user))
-      .catch(() => props.onSignInError && props.onSignInError());
+      .catch(() => props.onSignInError && props.onSignInError())
 
-    return onAuthStateChanged(auth, (fbUser) => fillAuth(fbUser));
+    return onAuthStateChanged(auth, (fbUser) => fillAuth(fbUser))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return {
     ...state,
     signIn,
-    signOut,
-  };
+    signOut
+  }
 }
 
 function getProvider(providerId: string): AuthProvider {
   switch (providerId) {
     case GoogleAuthProvider.PROVIDER_ID:
-      return new GoogleAuthProvider();
+      return new GoogleAuthProvider()
     case FacebookAuthProvider.PROVIDER_ID:
-      return new FacebookAuthProvider();
+      return new FacebookAuthProvider()
     case TwitterAuthProvider.PROVIDER_ID:
-      return new TwitterAuthProvider();
+      return new TwitterAuthProvider()
     case GithubAuthProvider.PROVIDER_ID:
-      return new GithubAuthProvider();
+      return new GithubAuthProvider()
     default:
-      throw new Error(`No provider implemented for ${providerId}`);
+      throw new Error(`No provider implemented for ${providerId}`)
   }
 }
 
 const ErrorAccountExists = (code: string) => {
-  return code === 'auth/account-exists-with-different-credential';
-};
+  return code === 'auth/account-exists-with-different-credential'
+}
 
-export default useFirebaseAuth;
+export default useFirebaseAuth

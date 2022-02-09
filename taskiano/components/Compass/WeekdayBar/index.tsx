@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface IWeekdayBar {
-  day: string;
-  value: number;
-  height: number;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  day: string
+  value: number
+  height: number
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const translateDays: { [key: string]: string } = {
@@ -16,11 +16,11 @@ const translateDays: { [key: string]: string } = {
   thu: 'Qui',
   fri: 'Sex',
   sat: 'Sab',
-  sun: 'Dom',
-};
+  sun: 'Dom'
+}
 
 function WeekdayBar(props: IWeekdayBar) {
-  const height = isNaN(props.height) || props.height === 0 ? 5 : props.height;
+  const height = isNaN(props.height) || props.height === 0 ? 5 : props.height
 
   return (
     <div className={styles.weekdayBarContainer}>
@@ -37,7 +37,7 @@ function WeekdayBar(props: IWeekdayBar) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default WeekdayBar;
+export default WeekdayBar

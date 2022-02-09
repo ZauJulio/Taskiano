@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface IButtonProvider {
-  name: string;
-  provider: string;
-  handleSingIn: (provider: string) => void;
-  children: React.ReactNode;
+  name: string
+  provider: string
+  handleSingIn: (provider: string) => void
+  children: React.ReactNode
 }
 
 function ButtonProvider(props: IButtonProvider) {
@@ -18,7 +18,7 @@ function ButtonProvider(props: IButtonProvider) {
       {props.children}
       {props.name}
     </button>
-  );
+  )
 }
 
-export default ButtonProvider;
+export default ButtonProvider

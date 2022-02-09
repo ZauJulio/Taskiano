@@ -1,12 +1,12 @@
-import React, { memo } from 'react';
+import React, { memo } from 'react'
 
-import { MdColorLens } from 'react-icons/md';
+import { MdColorLens } from 'react-icons/md'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface IField {
-  value: string | number | boolean | any;
-  onChange: (value: string | number | boolean | any) => void;
+  value: string | number | boolean | any
+  onChange: (value: string | number | boolean | any) => void
 }
 
 const NameFC = (props: IField) => {
@@ -20,8 +20,8 @@ const NameFC = (props: IField) => {
         onChange={(e) => props.onChange(e.target.value)}
       />
     </label>
-  );
-};
+  )
+}
 
 const DescriptionFC = (props: IField) => {
   return (
@@ -36,8 +36,8 @@ const DescriptionFC = (props: IField) => {
         onChange={(e) => props.onChange(e.target.value)}
       />
     </label>
-  );
-};
+  )
+}
 
 const ColorSelectFC = (props: IField) => {
   return (
@@ -53,9 +53,9 @@ const ColorSelectFC = (props: IField) => {
         />
       </div>
     </label>
-  );
-};
+  )
+}
 
-export const Name = memo(NameFC);
-export const Description = memo(DescriptionFC);
-export const ColorSelect = memo(ColorSelectFC);
+export const Name = memo(NameFC)
+export const Description = memo(DescriptionFC)
+export const ColorSelect = memo(ColorSelectFC)

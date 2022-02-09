@@ -1,4 +1,4 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
 .countdownContent {
   @include flex-box($direction: column, $justify: center, $align: center);
@@ -12,7 +12,7 @@
 .RemainsFormatValue {
   @include font-bebas-neue($size: 4.2rem);
   transition: all 1s ease-in-out;
-  &:hover{
+  &:hover {
     text-shadow: 0px 4px 4px $hightOrange;
   }
 }

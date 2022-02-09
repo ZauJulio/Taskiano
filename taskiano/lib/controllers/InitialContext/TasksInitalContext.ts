@@ -1,15 +1,15 @@
-import { ITask } from '../../../types';
+import { ITask } from '../../../types'
 
 function addTimer(minutes: number = 30) {
-  var now = new Date();
-  now.setMinutes(now.getMinutes() + minutes);
+  var now = new Date()
+  now.setMinutes(now.getMinutes() + minutes)
 
-  return new Date(now);
+  return new Date(now)
 }
 
 interface InitialTaskContext {
-  projectName: string;
-  tasks: ITask[];
+  projectName: string
+  tasks: ITask[]
 }
 
 export function getTasksInitalContext(): InitialTaskContext[] {
@@ -24,7 +24,7 @@ export function getTasksInitalContext(): InitialTaskContext[] {
           created_at: new Date(),
           closed_in: null,
           timer: addTimer(61),
-          number: 1,
+          number: 1
         },
         {
           title: 'Ops, Tarefa atrasada?',
@@ -33,9 +33,9 @@ export function getTasksInitalContext(): InitialTaskContext[] {
           created_at: new Date(),
           closed_in: null,
           timer: addTimer(30),
-          number: 2,
-        },
-      ],
+          number: 2
+        }
+      ]
     },
     {
       projectName: 'Sobre',
@@ -47,9 +47,9 @@ export function getTasksInitalContext(): InitialTaskContext[] {
           created_at: new Date(),
           closed_in: null,
           timer: null,
-          number: 3,
-        },
-      ],
-    },
-  ];
+          number: 3
+        }
+      ]
+    }
+  ]
 }

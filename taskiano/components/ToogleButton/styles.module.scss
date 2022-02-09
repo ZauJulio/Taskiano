@@ -1,4 +1,4 @@
-@import "../../styles/vars.scss";
+@import '../../styles/vars.scss';
 
 .switchContainer {
   position: relative;
@@ -35,7 +35,7 @@
     bottom: 1px;
     left: 1px;
 
-    content: "";
+    content: '';
   }
   .switchShadow + label:before {
     right: 1px;

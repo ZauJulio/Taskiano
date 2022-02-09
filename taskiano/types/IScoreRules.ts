@@ -1,11 +1,11 @@
 interface IRecordObject {
-  [key: string]: number;
+  [key: string]: number
 }
 
 interface IScoreRules {
   [key: string]: {
-    [key: string]: IRecordObject;
-  };
+    [key: string]: IRecordObject
+  }
 }
 
-export default IScoreRules;
+export default IScoreRules

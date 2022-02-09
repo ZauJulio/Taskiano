@@ -1,8 +1,8 @@
-import React from 'react';
-import { default as ParticlesFC } from 'react-tsparticles';
+import React from 'react'
+import { default as ParticlesFC } from 'react-tsparticles'
 
-import colors from '../../../../styles/colors';
-import styles from './styles.module.scss';
+import colors from '../../../../styles/colors'
+import styles from './styles.module.scss'
 
 function Particles() {
   return (
@@ -10,12 +10,12 @@ function Particles() {
       className={styles.particles}
       options={{
         background: {
-          color: '#24283f',
+          color: '#24283f'
         },
         fpsLimit: 60,
         interactivity: {
           detect_on: 'canvas',
-          events: { resize: true },
+          events: { resize: true }
         },
         particles: {
           color: {
@@ -24,18 +24,18 @@ function Particles() {
               colors.orange,
               colors.highPurple,
               colors.highOrange,
-              colors.white,
-            ],
+              colors.white
+            ]
           },
           move: {
             attract: {
               enable: false,
-              rotate: { x: 800, y: 800 },
+              rotate: { x: 800, y: 800 }
             },
             enable: true,
             speed: 3,
             outModes: { default: 'destroy' },
-            trail: { enable: true, length: 30 },
+            trail: { enable: true, length: 30 }
           },
           number: { density: { enable: true, area: 400 }, value: 0 },
           opacity: { value: 0.4 },
@@ -48,20 +48,20 @@ function Particles() {
               minimumValue: 1,
               speed: 2,
               destroy: 'max',
-              sync: true,
-            },
-          },
+              sync: true
+            }
+          }
         },
         detectRetina: true,
         emitters: {
           direction: 'none',
           rate: { quantity: 5, delay: 0.3 },
           size: { width: 0, height: 0 },
-          position: { x: 50, y: 50 },
-        },
+          position: { x: 50, y: 50 }
+        }
       }}
     />
-  );
+  )
 }
 
-export default Particles;
+export default Particles

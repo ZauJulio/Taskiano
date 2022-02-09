@@ -1,1 +1,1 @@
-export * from './Firestore/providers';
+export * from './Firestore/providers'

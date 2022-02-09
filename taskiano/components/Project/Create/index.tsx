@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import EditorProject from '../Editor';
+import EditorProject from '../Editor'
 
 interface ICreateProject {
-  close: () => void;
+  close: () => void
 }
 
 function CreateProject(props: ICreateProject) {
-  return <EditorProject {...props} />;
+  return <EditorProject {...props} />
 }
 
-export default CreateProject;
+export default CreateProject

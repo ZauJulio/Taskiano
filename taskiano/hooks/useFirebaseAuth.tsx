@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import type { NextRouter } from "next/router";
+import { useEffect, useState } from 'react';
 
 import {
   fetchSignInMethodsForEmail,
@@ -8,103 +7,101 @@ import {
   signInWithPopup,
   signInWithRedirect,
   User as IFirebaseUser,
-} from "firebase/auth";
+  AuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+} from 'firebase/auth';
 
-import { UserController } from "../lib";
-import { auth } from "../services/Firebase";
+import { auth } from '../services/Firebase';
 
-import {
-  ToastEmailExists,
-  ToastComeBackSoon,
-  ToastTryOtherProvider,
-  ToastFoundedEmail,
-} from "../utils/toasts";
+import { IAuthUser, IAuthState, IHookAuthProps } from '../types';
 
 interface IAuth {
-  user: IFirebaseUser | null;
-  token: string | null;
+  authUser: IAuthUser | null;
   mounted: boolean;
 }
 
-interface IUseFirebaseAuth {
-  onSignOut?: () => void;
-  loginPage: string;
-  router: NextRouter;
-}
-
-function useFirebaseAuth(props: IUseFirebaseAuth) {
+function useFirebaseAuth(props: IHookAuthProps): IAuthState {
   const [state, setState] = useState<IAuth>({
-    user: auth.currentUser,
-    token: null,
+    authUser: auth.currentUser,
     mounted: true,
   });
 
   const fillAuth = (fireUser: IFirebaseUser | null) => {
-    fireUser?.getIdToken(true).then((token) => {
-      if (state.user !== fireUser || state.token !== token) {
-        setState({ user: fireUser, token, mounted: true });
+    if (state.authUser !== fireUser) {
+      setState({ authUser: fireUser, mounted: true });
 
-        if (props.router.pathname === props.loginPage && fireUser && token) {
-          ToastFoundedEmail();
-        }
+      if (props.areLoggedIn && fireUser) {
+        props.onSignInSuccess && props.onSignInSuccess();
       }
-    });
+    }
   };
 
   const linkAccounts = (email: string) => {
     fetchSignInMethodsForEmail(auth, email).then((methods) => {
-      ToastEmailExists(methods[0], email);
+      props.onLinkAccounts && props.onLinkAccounts(methods[0], email);
 
-      setTimeout(
-        () => signInWithRedirect(auth, UserController.getProvider(methods[0])),
-        5000
-      );
+      setTimeout(() => signInWithRedirect(auth, getProvider(methods[0])), 5000);
     });
   };
 
-  const signIn = (providerId: string) => {
-    signInWithPopup(auth, UserController.getProvider(providerId))
+  const signIn = async (providerId: string) => {
+    signInWithPopup(auth, getProvider(providerId))
       .then((fbUser) => fillAuth(fbUser.user))
       .catch((error) => {
-        if (UserController.ErrorAccountExists(error.code)) {
-          linkAccounts(error.email);
-        } else {
-          ToastTryOtherProvider();
-        }
+        ErrorAccountExists(error.code)
+          ? linkAccounts(error.email)
+          : props.onSignInError && props.onSignInError();
       });
   };
 
-  const signOut = () => {
+  const signOut = async () => {
     auth.signOut().then(() => {
-      setState({ user: null, token: null, mounted: true });
+      setState({ authUser: null, mounted: true });
 
-      indexedDB.deleteDatabase("firebaseLocalStorageDb");
+      indexedDB.deleteDatabase('firebaseLocalStorageDb');
 
-      ToastComeBackSoon();
       props.onSignOut && props.onSignOut();
-      props.router.push(props.loginPage);
     });
   };
 
   useEffect(() => {
-    auth.currentUser?.getIdToken(true).then((token) => {
-      setState({ user: auth.currentUser, token, mounted: true });
-    });
+    setState({ authUser: auth.currentUser, mounted: true });
 
     getRedirectResult(auth)
       .then((fbUser) => fbUser && fillAuth(fbUser.user))
-      .catch(() => ToastTryOtherProvider());
+      .catch(() => props.onSignInError && props.onSignInError());
 
     return onAuthStateChanged(auth, (fbUser) => fillAuth(fbUser));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
-    user: state.user,
-    mounted: state.mounted,
+    ...state,
     signIn,
     signOut,
   };
 }
+
+function getProvider(providerId: string): AuthProvider {
+  switch (providerId) {
+    case GoogleAuthProvider.PROVIDER_ID:
+      return new GoogleAuthProvider();
+    case FacebookAuthProvider.PROVIDER_ID:
+      return new FacebookAuthProvider();
+    case TwitterAuthProvider.PROVIDER_ID:
+      return new TwitterAuthProvider();
+    case GithubAuthProvider.PROVIDER_ID:
+      return new GithubAuthProvider();
+    default:
+      throw new Error(`No provider implemented for ${providerId}`);
+  }
+}
+
+const ErrorAccountExists = (code: string) => {
+  return code === 'auth/account-exists-with-different-credential';
+};
 
 export default useFirebaseAuth;

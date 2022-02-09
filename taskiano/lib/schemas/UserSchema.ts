@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 const UserSchema = Yup.object().shape({
   id: Yup.string().required(),

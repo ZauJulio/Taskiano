@@ -1,17 +1,17 @@
-import React from "react";
-import dynamic from "next/dynamic";
+import React from 'react';
+import dynamic from 'next/dynamic';
 
-import Compass from "../Compass";
-import RenderTime from "./RenderTime";
-import useTimersState from "./useTimersState";
-import ProjectSelector from "./ProjectSelector";
-import CarouselActiveTasks from "./CarouselActiveTasks";
+import Compass from '../Compass';
+import RenderTime from './RenderTime';
+import useTimersState from './useTimersState';
+import ProjectSelector from './ProjectSelector';
+import CarouselActiveTasks from './CarouselActiveTasks';
 
-import colors from "../../styles/colors";
-import styles from "./styles.module.scss";
+import colors from '../../styles/colors';
+import styles from './styles.module.scss';
 
 const CountdownCircleTimer = dynamic(
-  () => import("../CountdownCircleTimerWrapper"),
+  () => import('../CountdownCircleTimerWrapper'),
   { ssr: false }
 );
 
@@ -23,7 +23,7 @@ function Timers(props: ITimer) {
   const state = useTimersState();
 
   return (
-    <div className={`${styles.container} ${props.className ?? ""}`}>
+    <div className={`${styles.container} ${props.className ?? ''}`}>
       <div className={styles.countdown}>
         <ProjectSelector
           handleSelectProject={state.handleSelectProject}

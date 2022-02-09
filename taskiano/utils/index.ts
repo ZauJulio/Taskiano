@@ -1,12 +1,12 @@
-import type { ITask, IWeekday, IWeekdayPercent, IProjectTasks } from "../types";
-import StyleColors from "../styles/colors";
+import type { ITask, IWeekday, IWeekdayPercent, IProjectTasks } from '../types';
+import StyleColors from '../styles/colors';
 
 const minuteSeconds = 60;
 const hourSeconds = 3600;
 const daySeconds = 86400;
 const weekSeconds = 604800;
 
-export const weekdaysList = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+export const weekdaysList = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const colors = [
   StyleColors.red,
@@ -35,20 +35,20 @@ export function remainsFormatText(remainingTime: number) {
 
   const getText = () => {
     if (rTime <= minuteSeconds)
-      return rTime > 1 ? "Seg's" : "Seg";
+      return rTime > 1 ? 'Seg\'s' : 'Seg';
     if (rTime > minuteSeconds && rTime < hourSeconds)
-      return rTime >= minuteSeconds * 2 ? "Min's" : "Min";
+      return rTime >= minuteSeconds * 2 ? 'Min\'s' : 'Min';
     if (rTime > hourSeconds && rTime < daySeconds)
-      return rTime >= hourSeconds * 2 ? "Horas" : "Hora";
+      return rTime >= hourSeconds * 2 ? 'Horas' : 'Hora';
     if (rTime > daySeconds && rTime < weekSeconds)
-      return rTime >= daySeconds * 2 ? "Dias" : "Dia";
+      return rTime >= daySeconds * 2 ? 'Dias' : 'Dia';
 
-    return "Semana(s)";
+    return 'Semana(s)';
   };
 
   let text = getText();
 
-  return remainingTime > 0 ? text : text + " atrás";
+  return remainingTime > 0 ? text : text + ' atrás';
 }
 
 export function remainsFormatValue(remainingTime: number) {
@@ -70,7 +70,7 @@ export function MaxIndexByAttr(array: IWeekday[]): IWeekday {
   let max = array[0];
 
   for (var index of array) {
-    if (index["count"] > max["count"]) {
+    if (index['count'] > max['count']) {
       max = index;
     }
   }
@@ -80,14 +80,14 @@ export function MaxIndexByAttr(array: IWeekday[]): IWeekday {
 
 export function MapPercentageOfMaxPerDay(array: IWeekday[]): IWeekdayPercent[] {
   let max = MaxIndexByAttr(array);
-  let percentage = 100 / max?.["count"];
+  let percentage = 100 / max?.['count'];
   let result: IWeekdayPercent[] = [];
 
   for (var index of array) {
     result.push({
-      day: index["day"],
-      count: Number(index["count"]),
-      percent: Math.round(index["count"] * percentage),
+      day: index['day'],
+      count: Number(index['count']),
+      percent: Math.round(index['count'] * percentage),
     } as IWeekdayPercent);
   }
 
@@ -115,7 +115,7 @@ export function calcRemainingTime(timer?: string | Date | null) {
 }
 
 export const filterTasksInProgress = (taskList?: ITask[]) => {
-  return taskList?.filter((task) => task.status !== "2") ?? [];
+  return taskList?.filter((task) => task.status !== '2') ?? [];
 };
 
 export const filterActiveTasks = (taskList?: ITask[]) => {
@@ -128,19 +128,19 @@ export const filterActiveTasks = (taskList?: ITask[]) => {
 export const countTasksOverTime = (tasks?: ITask[]) => {
   return (
     tasks?.filter((task) =>
-      task.remainingTime ? task.remainingTime < 0 && task.status === "1" : false
+      task.remainingTime ? task.remainingTime < 0 && task.status === '1' : false
     ).length ?? 0
   );
 };
 
 export const countTasksDone = (tasks?: ITask[]) => {
-  return tasks?.filter((task) => task.status === "2").length ?? 0;
+  return tasks?.filter((task) => task.status === '2').length ?? 0;
 };
 
 export const countTasksTimers = (tasks?: ITask[]) => {
   return (
     tasks?.filter((task) =>
-      task.remainingTime ? task.remainingTime > 0 && task.status === "1" : false
+      task.remainingTime ? task.remainingTime > 0 && task.status === '1' : false
     ).length ?? 0
   );
 };
@@ -188,9 +188,9 @@ export function getDaysOfDifference(date: Date) {
 }
 
 export function getCurrentWeekday() {
-  const dateString = new Date().toLocaleString("en-US", {
+  const dateString = new Date().toLocaleString('en-US', {
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    weekday: "short",
+    weekday: 'short',
   });
 
   return dateString.toLowerCase();

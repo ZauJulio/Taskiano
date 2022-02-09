@@ -76,5 +76,84 @@
     svg {
       color: $gray;
     }
+
+    &:hover {
+      .userOptionsOverlay {
+        height: fit-content;
+        opacity: 1;
+      }
+    }
+    
+    .userOptionsOverlay {
+      position: absolute;
+      @include flex-box(
+        $justify: space-around,
+        $align: center,
+        $direction: column
+      );
+
+      top: 3.5rem;
+      right: -0.5rem;
+      width: 10rem;
+      z-index: 10;
+      gap: 1rem;
+
+      background: $darker;
+      box-shadow: 0px 0px 4px 4px #1a1d24;
+      border-radius: 10px;
+
+      height: 0;
+      opacity: 0;
+      transition: height 0.3s ease;
+
+      .userInfo {
+        @include flex-box($justify: center, $align: center, $direction: column);
+        text-align: end;
+        width: 80%;
+        height: 100%;
+        color: $white;
+
+        padding: 1rem 0 2rem;
+
+        .userName,
+        .userEmail {
+          @include font-raleway($size: 0.9rem);
+          text-align: end;
+          width: 100%;
+          color: $white;
+        }
+      }
+
+      .options {
+        width: 100%;
+
+        button {
+          @include flex-box($justify: center, $align: center);
+          color: $white;
+          background: $dark;
+          padding: 0.5rem 1rem;
+          transition: all 0.3s ease;
+
+          width: 100%;
+          height: 2.5rem;
+          border-top: 3px solid $darker;
+
+          &:hover {
+            filter: brightness(1.2);
+          }
+
+          &:last-of-type {
+            border-radius: 0px 0px 10px 10px;
+          }
+        }
+
+
+        .deleteAccount {
+          &:hover {
+            background: $red;
+          }
+        }
+      }
+    }
   }
 }

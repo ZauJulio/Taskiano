@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useWindowSize } from "use-hooks";
+import React, { useEffect, useState } from 'react';
+import { useWindowSize } from 'use-hooks';
 
-import Carousel from "../../Carousel";
-import ProjectWidget from "./ProjectWidget";
+import Carousel from '../../Carousel';
+import ProjectWidget from './ProjectWidget';
 
-import { getTasksOfProject } from "../../../utils";
-import type { IProject, IProjectTasks } from "../../../types";
+import { getTasksOfProject } from '../../../utils';
+import type { IProject, IProjectTasks } from '../../../types';
 
 interface IProjectsWidgets {
   projects: IProject[];

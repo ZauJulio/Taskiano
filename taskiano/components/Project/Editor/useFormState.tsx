@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import { useAuth } from "../../../hooks/useAuth";
-import { useProjects } from "../../../hooks/useProjects";
+import { useAuth } from '../../../hooks/useAuth';
+import { useProjects } from '../../../hooks/useProjects';
 
-import { ToastTryAgain } from "../../../utils/toasts";
+import { ToastTryAgain } from '../../../utils/toasts';
 
-import type { IProject } from "../../../types";
-import colors from "../../../styles/colors";
+import type { IProject } from '../../../types';
+import colors from '../../../styles/colors';
 
 interface IFormState {
   project?: IProject;
@@ -16,9 +16,9 @@ interface IFormState {
 }
 
 function useFormState({ project, ...props }: IFormState) {
-  const [name, setName] = useState(project?.name ?? "Projeto: ");
-  const [description, setDescription] = useState(project?.description ?? "");
-  const [color, setColor] = useState("");
+  const [name, setName] = useState(project?.name ?? 'Projeto: ');
+  const [description, setDescription] = useState(project?.description ?? '');
+  const [color, setColor] = useState('');
   const [colorInt, setColorInt] = useState(0);
 
   const create = useProjects((value) => value.create);
@@ -63,9 +63,9 @@ function useFormState({ project, ...props }: IFormState) {
 
     try {
       toast.promise(operation(), {
-        pending: "Salvando...",
-        success: "Tudo certo 🦄",
-        error: "Ah não! Verifique os dados 🤯",
+        pending: 'Salvando...',
+        success: 'Tudo certo 🦄',
+        error: 'Ah não! Verifique os dados 🤯',
       });
 
       props.close();

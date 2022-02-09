@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 const HistorySchema = Yup.object().shape({
   id: Yup.string(),

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import Selector from "../Selector";
+import Selector from '../Selector';
 
-import type { IProject } from "../../../types";
-import styles from "./styles.module.scss";
+import type { IProject } from '../../../types';
+import styles from './styles.module.scss';
 
 interface IProjectSelector {
   handleSelectProject: (n: number) => void;

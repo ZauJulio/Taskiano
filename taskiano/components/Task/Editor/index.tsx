@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
 import {
   FixTask,
@@ -6,15 +6,15 @@ import {
   SelectPriority,
   TimerTask,
   TitleTask,
-} from "./Fields";
+} from './Fields';
 
-import MarkdownPreview from "../../MarkdownPreview";
-import useFormState from "./useFormState";
+import MarkdownPreview from '../../MarkdownPreview';
+import useFormState from './useFormState';
 
-import type { ITask } from "../../../types";
+import type { ITask } from '../../../types';
 
-import colors from "../../../styles/colors";
-import styles from "./styles.module.scss";
+import colors from '../../../styles/colors';
+import styles from './styles.module.scss';
 
 interface IEditorTask {
   task?: ITask;
@@ -38,7 +38,7 @@ function EditorTask(props: IEditorTask) {
           style={{ background: props.projectColor ?? colors.white }}
         >
           <h1 className={styles.title}>
-            {props.task ? "Editar tarefa" : "Criar tarefa"}
+            {props.task ? 'Editar tarefa' : 'Criar tarefa'}
           </h1>
         </div>
 

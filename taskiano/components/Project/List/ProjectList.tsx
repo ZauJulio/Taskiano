@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { BiLeftArrow } from "react-icons/bi";
+import { BiLeftArrow } from 'react-icons/bi';
 
-import { useProjects } from "../../../hooks/useProjects";
+import { useProjects } from '../../../hooks/useProjects';
 
-import Task from "../../Task";
-import EditorProject from "../../Project/Editor";
-import { ClockTimer } from "../../ClockTimer";
-import { getDescriptionTime } from "../../../utils";
+import Task from '../../Task';
+import EditorProject from '../../Project/Editor';
+import { ClockTimer } from '../../ClockTimer';
+import { getDescriptionTime } from '../../../utils';
 
-import type { IProject, ITask } from "../../../types";
-import styles from "./styles.module.scss";
+import type { IProject, ITask } from '../../../types';
+import styles from './styles.module.scss';
 
 export interface ITaskProject extends ITask {
   projectName?: string;
@@ -70,8 +70,8 @@ function ProjectList(props: IProjectList) {
               <td className={styles.priority}>{task?.priority}</td>
 
               <td className={styles.createdAt}>
-                {new Date(task.created_at ?? "")
-                  .toLocaleString("pt-BR")
+                {new Date(task.created_at ?? '')
+                  .toLocaleString('pt-BR')
                   .slice(0, -3)}
               </td>
 

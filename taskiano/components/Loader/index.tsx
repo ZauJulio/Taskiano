@@ -1,7 +1,7 @@
-import React from "react";
-import Modal from "../Modal";
+import React from 'react';
+import Modal from '../Modal';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface ILoader {
   isLoading?: boolean;
@@ -9,7 +9,7 @@ interface ILoader {
 
 function Loader(props: ILoader) {
   return (
-    <Modal className={props.isLoading ? "" : styles.none}>
+    <Modal className={props.isLoading ? '' : styles.none}>
       <div className={styles.loaderContainer}>
         <div className={styles.loader}></div>
       </div>

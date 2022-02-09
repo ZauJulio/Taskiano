@@ -1,12 +1,12 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from 'react';
 
-import { HistoryContext } from "./Provider";
-import { HistoryController } from "../../lib";
-import { useAuth } from "../../hooks/useAuth";
+import { HistoryContext } from './Provider';
+import { HistoryController } from '../../lib';
+import { useAuth } from '../../hooks/useAuth';
 
-import { weekdaysList } from "../../utils";
+import { weekdaysList } from '../../utils';
 
-import type { IHistory, ITask, IWeekday } from "../../types";
+import type { IHistory, ITask, IWeekday } from '../../types';
 
 interface IHistoryContextProvider {
   children: ReactNode;
@@ -17,20 +17,27 @@ export function HistoryContextProvider(props: IHistoryContextProvider) {
   const [weekdays, setWeekdays] = useState<IWeekday[]>([]);
 
   const user = useAuth((ctx) => ctx.user);
+  const authenticated = useAuth((ctx) => ctx.authenticated);
 
-  const updateTaskCount = async (task: ITask, action: "open" | "close") => {
-    await HistoryController.updateScore({ task, action });
+  const updateTaskCount = async (task: ITask, action: 'open' | 'close') => {
+    await HistoryController.updateScore({ task, action, userId: user.id });
 
-    HistoryController.getHistoryOfUser(user.id).then((_history) => {
+    await HistoryController.getHistoryOfUser(user.id).then((_history) => {
       setHistory(_history);
     });
   };
 
   useEffect(() => {
-    HistoryController.getHistoryOfUser(user?.id).then((_history) =>
-      setHistory(() => ({ ..._history }))
-    );
-  }, [user]);
+    async function updateHistory() {
+      if (user && user.id && authenticated) {
+        await HistoryController.getHistoryOfUser(user.id).then((_history) =>
+          setHistory(() => ({ ..._history }))
+        );
+      }
+    }
+
+    updateHistory();
+  }, [user, authenticated]);
 
   useEffect(() => {
     setWeekdays(

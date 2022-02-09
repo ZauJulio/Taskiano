@@ -1,12 +1,12 @@
-import { ReactNode, useCallback, useState, useEffect } from "react";
+import { ReactNode, useCallback, useState, useEffect } from 'react';
 
-import { TasksContext } from "./Provider";
+import { TasksContext } from './Provider';
 
-import { TaskController } from "../../lib";
-import { useAuth, useHistory, useProjects } from "../../hooks";
-import { calcRemainingTime } from "../../utils";
+import { HistoryController, TaskController } from '../../lib';
+import { useAuth, useHistory, useProjects } from '../../hooks';
+import { calcRemainingTime } from '../../utils';
 
-import type { IProject, ITask, IProjectTasks } from "../../types";
+import type { IProject, ITask, IProjectTasks } from '../../types';
 
 interface ITasksContextProvider {
   children: ReactNode;
@@ -23,6 +23,7 @@ export function TasksContextProvider(props: ITasksContextProvider) {
 
   const projects = useProjects((ctx) => ctx.projects);
   const updateTaskCount = useHistory((ctx) => ctx.updateTaskCount);
+  const user = useAuth((ctx) => ctx.user);
   const authenticated = useAuth((ctx) => ctx.authenticated);
 
   const fetchTasks = useCallback(async () => {
@@ -59,11 +60,11 @@ export function TasksContextProvider(props: ITasksContextProvider) {
       prev.map((t) =>
         t.projectId === projectId
           ? {
-              projectId: t.projectId,
-              tasks: t.tasks.map((_tasks) =>
-                _tasks.id === taskId ? updatedTask : _tasks
-              ),
-            }
+            projectId: t.projectId,
+            tasks: t.tasks.map((_tasks) =>
+              _tasks.id === taskId ? updatedTask : _tasks
+            ),
+          }
           : t
       )
     );
@@ -71,9 +72,25 @@ export function TasksContextProvider(props: ITasksContextProvider) {
 
   const create = useCallback(
     async (data: ITask) => {
-      insertTask(await TaskController.create(data));
+      const latestTaskNumber = await HistoryController.getLastTaskNumber(
+        user.id
+      );
+
+      if (latestTaskNumber) {
+        const task = await TaskController.create({
+          ...data,
+          number: latestTaskNumber + 1,
+        });
+
+        await HistoryController.updateLastTaskNumber({
+          userId: user.id,
+          taskNumber: latestTaskNumber + 1,
+        });
+
+        insertTask(task);
+      }
     },
-    [insertTask]
+    [insertTask, user]
   );
 
   const update = useCallback(
@@ -85,7 +102,7 @@ export function TasksContextProvider(props: ITasksContextProvider) {
   );
 
   const openCloseTask = useCallback(
-    async (id: string, opt: "open" | "close") => {
+    async (id: string, opt: 'open' | 'close') => {
       const task = await TaskController.setStatus(id, opt);
 
       task && updateTask(task);
@@ -128,8 +145,8 @@ export function TasksContextProvider(props: ITasksContextProvider) {
         tasks,
         update,
         create,
-        openTask: (id: string) => openCloseTask(id, "open"),
-        closeTask: (id: string) => openCloseTask(id, "close"),
+        openTask: (id: string) => openCloseTask(id, 'open'),
+        closeTask: (id: string) => openCloseTask(id, 'close'),
         deleteTask,
       }}
     >

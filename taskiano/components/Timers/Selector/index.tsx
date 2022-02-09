@@ -1,8 +1,8 @@
-import React, { Children, ReactNode, useEffect, useState } from "react";
+import React, { Children, ReactNode, useEffect, useState } from 'react';
 
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface ISelector {
   textOnEmpty?: string;

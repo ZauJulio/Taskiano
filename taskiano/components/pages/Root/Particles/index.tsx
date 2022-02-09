@@ -1,8 +1,8 @@
-import React from "react";
-import { default as ParticlesFC } from "react-tsparticles";
+import React from 'react';
+import { default as ParticlesFC } from 'react-tsparticles';
 
-import colors from "../../../../styles/colors";
-import styles from "./styles.module.scss";
+import colors from '../../../../styles/colors';
+import styles from './styles.module.scss';
 
 function Particles() {
   return (
@@ -10,11 +10,11 @@ function Particles() {
       className={styles.particles}
       options={{
         background: {
-          color: "#24283f",
+          color: '#24283f',
         },
         fpsLimit: 60,
         interactivity: {
-          detect_on: "canvas",
+          detect_on: 'canvas',
           events: { resize: true },
         },
         particles: {
@@ -34,27 +34,27 @@ function Particles() {
             },
             enable: true,
             speed: 3,
-            outModes: { default: "destroy" },
+            outModes: { default: 'destroy' },
             trail: { enable: true, length: 30 },
           },
           number: { density: { enable: true, area: 400 }, value: 0 },
           opacity: { value: 0.4 },
-          shape: { type: "circle" },
+          shape: { type: 'circle' },
           size: {
             value: 25,
             animation: {
-              startValue: "min",
+              startValue: 'min',
               enable: true,
               minimumValue: 1,
               speed: 2,
-              destroy: "max",
+              destroy: 'max',
               sync: true,
             },
           },
         },
         detectRetina: true,
         emitters: {
-          direction: "none",
+          direction: 'none',
           rate: { quantity: 5, delay: 0.3 },
           size: { width: 0, height: 0 },
           position: { x: 50, y: 50 },

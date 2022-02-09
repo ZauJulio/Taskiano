@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import View from "./View";
-import CheckBox from "../Checkbox";
-import { ClockTimer } from "../ClockTimer";
-import { getDescriptionTime } from "../../utils";
+import View from './View';
+import CheckBox from '../Checkbox';
+import { ClockTimer } from '../ClockTimer';
+import { getDescriptionTime } from '../../utils';
 
-import { useTasks } from "../../hooks/useTasks";
+import { useTasks } from '../../hooks/useTasks';
 
-import type { ITask } from "../../types";
-import styles from "./styles.module.scss";
+import type { ITask } from '../../types';
+import styles from './styles.module.scss';
 
 interface ITaskExtra extends ITask {
   hideTimer?: boolean;
@@ -29,9 +29,9 @@ function Task({ remainingTime, ...props }: ITaskExtra) {
         {!props.hideCheckbox && (
           <CheckBox
             className={styles.checkBox}
-            checked={props.status === "close"}
+            checked={props.status === 'close'}
             onClick={async () => {
-              props.status === "open"
+              props.status === 'open'
                 ? await closeTask(props.id)
                 : await openTask(props.id);
             }}

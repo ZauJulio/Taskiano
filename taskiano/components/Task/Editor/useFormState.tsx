@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import { useTasks } from "../../../hooks/useTasks";
+import { useTasks } from '../../../hooks/useTasks';
 
-import type { ITask } from "../../../types";
+import type { ITask } from '../../../types';
 
 interface IFormState {
   task?: ITask;
@@ -13,12 +13,12 @@ interface IFormState {
 }
 
 function useFormState(props: IFormState) {
-  const [title, setTitle] = useState(props.task?.title ?? "Tarefa: ");
-  const [note, setNote] = useState(props.task?.note ?? "# Hello World");
+  const [title, setTitle] = useState(props.task?.title ?? 'Tarefa: ');
+  const [note, setNote] = useState(props.task?.note ?? '# Hello World');
   const [fixed, setFixed] = useState<boolean>(props.task?.fixed ?? false);
   const [priority, setPriority] = useState(props.task?.priority ?? 0);
   const [timer, setTimer] = useState<Date>();
-  const [timerShow, setTimerShow] = useState("");
+  const [timerShow, setTimerShow] = useState('');
 
   const create = useTasks((value) => value.create);
   const update = useTasks((value) => value.update);
@@ -26,9 +26,9 @@ function useFormState(props: IFormState) {
   const onChangeDate = useCallback(
     (e: any) => {
       const dateTime = new Date(e.target ? e.target.value : e);
-      const date = dateTime.toISOString().substr(0, 11);
+      const date = dateTime.toISOString().substring(0, 11);
       const localDateTime =
-        date + dateTime.toLocaleString("pt-BR").substr(11, 5);
+        date + dateTime.toLocaleString('pt-BR').substring(11);
 
       setTimer(dateTime);
       setTimerShow(localDateTime);
@@ -58,7 +58,7 @@ function useFormState(props: IFormState) {
         note,
         fixed,
         priority,
-        status: "open",
+        status: 'open',
         created_at: new Date(),
         projectId: props.projectId,
         timer: timer || null,
@@ -69,11 +69,11 @@ function useFormState(props: IFormState) {
 
     try {
       await callback();
-      toast.success("Tudo certo 🦄");
+      toast.success('Tudo certo 🦄');
       props.close();
     } catch (err) {
-      console.log(err);
-      toast.error("Ah não! Verifique os dados 🤯");
+      console.error(err);
+      toast.error('Ah não! Verifique os dados 🤯');
     }
   };
 

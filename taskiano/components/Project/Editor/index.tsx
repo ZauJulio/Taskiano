@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import Modal from "../../Modal";
-import useFormState from "./useFormState";
-import { ColorSelect, Description, Name } from "./Fields";
+import Modal from '../../Modal';
+import useFormState from './useFormState';
+import { ColorSelect, Description, Name } from './Fields';
 
-import { IProject } from "../../../types";
+import { IProject } from '../../../types';
 
-import styles from "./styles.module.scss";
-import { BsFillTrashFill } from "react-icons/bs";
-import colors from "../../../styles/colors";
-import { useProjects } from "../../../hooks/useProjects";
-import { toast } from "react-toastify";
+import styles from './styles.module.scss';
+import { BsFillTrashFill } from 'react-icons/bs';
+import colors from '../../../styles/colors';
+import { useProjects } from '../../../hooks/useProjects';
+import { toast } from 'react-toastify';
 
 interface IEditorProject {
   project?: IProject;
@@ -28,9 +28,9 @@ function EditorProject(props: IEditorProject) {
   const tryDeleteProject = () => {
     try {
       toast.promise(deleteProject(props.project?.id), {
-        pending: "Excluindo",
-        success: "Tudo certo 🦄",
-        error: "Ah não! Verifique os dados 🤯",
+        pending: 'Excluindo',
+        success: 'Tudo certo 🦄',
+        error: 'Ah não! Verifique os dados 🤯',
       });
 
       props.close();

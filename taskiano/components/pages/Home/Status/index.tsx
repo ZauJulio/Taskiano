@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import TaskStatus from "../../../Task/Status";
-import Confetti from "../../../Confetti";
+import TaskStatus from '../../../Task/Status';
+import Confetti from '../../../Confetti';
 
-import type { ITask } from "../../../../types";
-import styles from "./styles.module.scss";
+import type { ITask } from '../../../../types';
+import styles from './styles.module.scss';
 
 interface IStatus {
   nextTasks?: ITask[];
@@ -13,9 +13,9 @@ interface IStatus {
 
 function Status({ nextTasks = [], overdueTasks = [] }: IStatus) {
   const onEmptyNextTasks =
-    overdueTasks?.length === 0 ? "Tudo pronto 😏" : "Nada em um futuro proxímo";
+    overdueTasks?.length === 0 ? 'Tudo pronto 😏' : 'Nada em um futuro proxímo';
   const onEmptyOverdueTasks =
-    nextTasks?.length === 0 ? "Tudo pronto 😏" : "Parabéns, seu score agradece";
+    nextTasks?.length === 0 ? 'Tudo pronto 😏' : 'Parabéns, seu score agradece';
 
   return (
     <div className={styles.statusContainer}>

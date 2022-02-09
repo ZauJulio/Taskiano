@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Task from "../../Task";
-import EditorProject from "../Editor";
-import CreateTask from "../../Task/Create";
-import ProjectStatus from "./ProjectStatus";
+import Task from '../../Task';
+import EditorProject from '../Editor';
+import CreateTask from '../../Task/Create';
+import ProjectStatus from './ProjectStatus';
 
-import { useProjects } from "../../../hooks/useProjects";
+import { useProjects } from '../../../hooks/useProjects';
 
 import {
   countTasksDone,
   countTasksOverTime,
   countTasksTimers,
-} from "../../../utils";
+} from '../../../utils';
 
-import type { IProject, ITask } from "../../../types";
+import type { IProject, ITask } from '../../../types';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IProjectWidget {
   id?: string;
@@ -34,8 +34,8 @@ function ProjectWidget(props: IProjectWidget) {
 
   const getTitle = () => {
     if (props.tasks?.length) {
-      return `${props.tasks.length} Tarefa${props.tasks.length > 1 ? "s" : ""}`;
-    } else return "Tudo Feito";
+      return `${props.tasks.length} Tarefa${props.tasks.length > 1 ? 's' : ''}`;
+    } else return 'Tudo Feito';
   };
 
   const handleOnClickTitle = () => {

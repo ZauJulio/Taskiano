@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 const ProjectSchema = Yup.object().shape({
   id: Yup.string(),

@@ -1,10 +1,10 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 
-import { useAuth } from "../../hooks/useAuth";
-import { ProjectsContext } from "./Provider";
-import { ProjectController } from "../../lib";
+import { useAuth } from '../../hooks/useAuth';
+import { ProjectsContext } from './Provider';
+import { ProjectController } from '../../lib';
 
-import type { IProject } from "../../types";
+import type { IProject } from '../../types';
 
 interface IProjectsContextProvider {
   children: ReactNode;
@@ -13,15 +13,11 @@ interface IProjectsContextProvider {
 export function ProjectsContextProvider(props: IProjectsContextProvider) {
   const [projects, setProjects] = useState<IProject[]>([]);
 
-  const authenticated = useAuth((ctx) => ctx.authenticated);
   const user = useAuth((ctx) => ctx.user);
+  const authenticated = useAuth((ctx) => ctx.authenticated);
 
   const fetchProjects = useCallback(async () => {
-    if (!user?.id) return;
-
-    const _projects = await ProjectController.getDocsOfUser(user?.id);
-
-    user && setProjects(_projects);
+    setProjects(await ProjectController.filter('userId', '==', user?.id));
   }, [user]);
 
   const updateProjects = useCallback((changedProject: IProject) => {
@@ -76,17 +72,9 @@ export function ProjectsContextProvider(props: IProjectsContextProvider) {
    * Auto update tasks when project is updated
    */
   useEffect(() => {
-    authenticated && fetchProjects();
-  }, [authenticated, fetchProjects]);
-
-  /**
-   * Auto update tasks every 2 minutes since last update
-   */
-  useEffect(() => {
-    return () =>
-      clearTimeout(setTimeout(() => authenticated && fetchProjects(), 120000));
+    if (user && user.id && authenticated) fetchProjects();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projects]);
+  }, [user, authenticated]);
 
   return (
     <ProjectsContext.Provider

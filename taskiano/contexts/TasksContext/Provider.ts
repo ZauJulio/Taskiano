@@ -1,5 +1,5 @@
-import { createContext } from "use-context-selector";
-import type { ITask, IProjectTasks } from "../../types";
+import { createContext } from 'use-context-selector';
+import type { ITask, IProjectTasks } from '../../types';
 
 export interface ITasksContext {
   tasks: IProjectTasks[];

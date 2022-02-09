@@ -1,10 +1,10 @@
-import React, { memo } from "react";
-import { FaTimes } from "react-icons/fa";
-import { GiAlarmClock } from "react-icons/gi";
-import { MdDone } from "react-icons/md";
+import React, { memo } from 'react';
+import { FaTimes } from 'react-icons/fa';
+import { GiAlarmClock } from 'react-icons/gi';
+import { MdDone } from 'react-icons/md';
 
-import colors from "../../../../styles/colors";
-import styles from "./styles.module.scss";
+import colors from '../../../../styles/colors';
+import styles from './styles.module.scss';
 
 interface IProjectStatus {
   over: number;

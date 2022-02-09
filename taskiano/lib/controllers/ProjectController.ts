@@ -1,135 +1,63 @@
-import { addDoc, doc, Timestamp } from "firebase/firestore";
+import { getProjectsInitalContext } from './InitialContext';
+import { ProjectRepository } from './../repositories';
+import { ProjectService } from './../services';
 
-import { TaskController } from ".";
-import FireController from "./FireController";
+import type { IProject, WhereFilterOp } from '../../types';
 
-import { ProjectRef } from "../models";
-import { ProjectSchema } from "../schemas";
-import type { IProject } from "../../types";
+export class ProjectController {
+  private service: ProjectService;
 
-class Controller extends FireController<IProject> {
-  constructor() {
-    super({
-      ref: ProjectRef,
-      schema: ProjectSchema,
-      _name: "Project",
-    });
+  constructor(props: { service: ProjectService }) {
+    this.service = props.service;
   }
 
-  public async get(id: string): Promise<IProject | undefined> {
-    const _doc = await super.get(id);
-    if (!_doc) return;
+  async init(userId: string) {
+    const projects: IProject[] = [];
 
-    return {
-      ..._doc,
-      created_at: !_doc.created_at
-        ? _doc.created_at
-        : this.castDate(_doc.created_at as unknown as Timestamp),
-      closed_in: !_doc.closed_in
-        ? _doc.closed_in
-        : this.castDate(_doc.closed_in as unknown as Timestamp),
-    };
-  }
+    getProjectsInitalContext().forEach(async (project) => {
+      const _project = await this.create({ ...project, userId });
 
-  public async create(data: IProject, _id?: string): Promise<IProject> {
-    await this.Validator(data);
-
-    const { id } = _id
-      ? await this.setDoc(doc(this.ref, _id), data)
-      : await addDoc(this.ref, data);
-
-    return { id, ...data };
-  }
-
-  public async init(userId: string): Promise<string[]> {
-    const projects: string[] = [];
-
-    getInitialProjects().forEach(async (ex) => {
-      const { id: projectId } = await this.create({ ...ex.project, userId });
-
-      ex.tasks.forEach((task) => TaskController.create({ ...task, projectId }));
-
-      projectId && projects.push(projectId);
+      projects.push(_project);
     });
 
     return projects;
   }
 
-  public async setArchived(id: string, hasArchived: boolean): Promise<void> {
+  async get(id: string) {
+    return this.service.get(id);
+  }
+
+  async getProjects(userId: string) {
+    return this.service.filter('userId', '==', userId);
+  }
+
+  async create(data: IProject) {
+    return this.service.create(data);
+  }
+
+  async update(id: string, data: IProject) {
+    return this.service.update(id, data);
+  }
+
+  async delete(id: string) {
+    await this.service.delete(id);
+  }
+
+  async setArchived(id: string, hasArchived: boolean) {
     const project = await this.get(id);
 
-    project && (await this.update(id, { ...project, hasArchived }));
+    project && (await this.service.update(id, { ...project, hasArchived }));
+  }
+
+  async filter(field: string, operator: WhereFilterOp, value: any) {
+    return this.service.filter(field, operator, value);
   }
 }
 
-const ProjectController = new Controller();
+const instance = new ProjectController({
+  service: new ProjectService({
+    repo: ProjectRepository,
+  }),
+});
 
-export default ProjectController;
-
-function getInitialProjects() {
-  function addTimer(minutes: number = 30) {
-    var now = new Date();
-    now.setMinutes(now.getMinutes() + minutes);
-
-    return new Date(now);
-  }
-
-  return [
-    {
-      project: {
-        name: "Hello World",
-        description: "1º Projeto",
-        created_at: new Date(),
-        closed_in: null,
-        color: 11235583, // Purple: #ab70ff
-      },
-      tasks: [
-        {
-          title: "Hello World",
-          note: "# 1º Task",
-          status: "open",
-          created_at: new Date(),
-          closed_in: null,
-          timer: addTimer(61),
-        },
-        {
-          title: "Ops, Tarefa atrasada?",
-          note: "# Só um exemplo 😅",
-          status: "open",
-          created_at: new Date(),
-          closed_in: null,
-          timer: addTimer(30),
-        },
-      ],
-    },
-    {
-      project: {
-        name: "More One",
-        description: "1º Projeto",
-        created_at: new Date(),
-        closed_in: null,
-        color: 16740437, // OrangeDark: #ff7055
-      },
-      tasks: [],
-    },
-    {
-      project: {
-        name: "Sobre",
-        description: "Algumas informações :)",
-        created_at: new Date(),
-        closed_in: null,
-        color: 16752697, // Orange: #ffa039
-      },
-      tasks: [
-        {
-          title: "Projetos",
-          note: require("../md/aboutProject.md").default,
-          status: "open",
-          created_at: new Date(),
-          closed_in: null,
-          timer: null,
-        },
-      ],
-    },
-  ];
-}
+export default instance;

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import WeekdayBar from "./WeekdayBar";
-import { useHistory } from "../../hooks/useHistory";
-import { MapPercentageOfMaxPerDay } from "../../utils";
+import WeekdayBar from './WeekdayBar';
+import { useHistory } from '../../hooks/useHistory';
+import { MapPercentageOfMaxPerDay } from '../../utils';
 
-import type { IWeekday } from "../../types";
-import styles from "./styles.module.scss";
+import type { IWeekday } from '../../types';
+import styles from './styles.module.scss';
 
 function Compass() {
   const weekdays: IWeekday[] = useHistory((state) => state.weekdays);

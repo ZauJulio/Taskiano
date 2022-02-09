@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
-import { MdColorLens } from "react-icons/md";
+import { MdColorLens } from 'react-icons/md';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IField {
   value: string | number | boolean | any;

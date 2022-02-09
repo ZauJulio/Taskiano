@@ -1,27 +1,27 @@
-import React, { ReactNode, Children } from 'react';
+import React, { ReactNode, Children } from 'react'
 
-import usePage from './usePage';
-import Arrow from './Arrow';
-import PageIndicators from './PageIndicator';
+import usePage from './usePage'
+import Arrow from './Arrow'
+import PageIndicators from './PageIndicator'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface ICarousel {
-  className?: string;
-  gap?: number;
-  infiniteScroll?: boolean;
-  autoInfiniteScroll?: boolean;
-  autoInfiniteScrollInterval?: number;
-  showIndicator?: boolean;
-  hideArrowInFirstAndLastPage?: boolean;
-  howMany: number;
-  children: ReactNode | Element[];
+  className?: string
+  gap?: number
+  infiniteScroll?: boolean
+  autoInfiniteScroll?: boolean
+  autoInfiniteScrollInterval?: number
+  showIndicator?: boolean
+  hideArrowInFirstAndLastPage?: boolean
+  howMany: number
+  children: ReactNode | Element[]
 }
 
 function Carousel(props: ICarousel) {
-  const childrenCount = Children.count(props.children);
-  const pageCount = Math.ceil(childrenCount / props.howMany);
-  const itemsContainerStyle = { gap: `${props.gap ?? 2}rem` };
+  const childrenCount = Children.count(props.children)
+  const pageCount = Math.ceil(childrenCount / props.howMany)
+  const itemsContainerStyle = { gap: `${props.gap ?? 2}rem` }
 
   const {
     handles,
@@ -29,12 +29,12 @@ function Carousel(props: ICarousel) {
     setCurrentPage,
     ShowArrowBackward,
     ShowArrowForward,
-    showInPage,
+    showInPage
   } = usePage({
     pageCount,
     count: childrenCount,
-    ...props,
-  });
+    ...props
+  })
 
   return (
     <div className={`${styles.carouselContainer}  ${props?.className}`}>
@@ -66,7 +66,7 @@ function Carousel(props: ICarousel) {
         onClick={(index: number) => setCurrentPage(index)}
       />
     </div>
-  );
+  )
 }
 
-export default Carousel;
+export default Carousel

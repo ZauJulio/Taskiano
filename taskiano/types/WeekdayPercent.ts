@@ -1,7 +1,7 @@
 interface IWeekdayPercent {
-  day: string;
-  count: number;
-  percent: number;
+  day: string
+  count: number
+  percent: number
 }
 
-export default IWeekdayPercent;
+export default IWeekdayPercent

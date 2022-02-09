@@ -1,58 +1,57 @@
-import { HistoryRepository } from '../repositories';
-import { HistoryService } from '../services';
+import { HistoryService } from '../services'
 
-import { getCurrentWeekday } from '../../utils';
+import { getCurrentWeekday } from '../../utils'
 
-import type { IScoreRules, ITask } from '../../types';
+import type { IScoreRules, ITask } from '../../types'
 
 export class HistoryController {
   private score_rules: IScoreRules = {
     task: {
       close: {
         inTime: 2,
-        outTime: 1,
+        outTime: 1
       },
       open: {
         inTime: -1,
-        outTime: -2,
-      },
-    },
-  };
+        outTime: -2
+      }
+    }
+  }
 
-  private service: HistoryService;
+  private service: HistoryService
 
   constructor(props: { service: HistoryService }) {
-    this.service = props.service;
+    this.service = props.service
   }
 
   async getHistoryOfUser(userId?: string) {
-    return this.service.getHistoryOfUser(userId);
+    return this.service.getHistoryOfUser(userId)
   }
 
   async getLastTaskNumber(userId: string) {
-    return (await this.getHistoryOfUser(userId)).lastTaskNumber;
+    return (await this.getHistoryOfUser(userId)).lastTaskNumber
   }
 
   async updateLastTaskNumber(props: { userId?: string; taskNumber?: number }) {
-    await this.service.updateLastTaskNumber(props);
+    await this.service.updateLastTaskNumber(props)
   }
 
   async updateScore(props: { task?: ITask; action: string; userId?: string }) {
-    if (!props.task || !props.action || !props.userId) return;
+    if (!props.task || !props.action || !props.userId) return
 
-    const doc = await this.getHistoryOfUser(props.userId);
-    if (!doc) return;
+    const doc = await this.getHistoryOfUser(props.userId)
+    if (!doc) return
 
-    const currTime = new Date().getTime();
-    const closed_in = props.task.closed_in ?? Infinity;
+    const currTime = new Date().getTime()
+    const closed_in = props.task.closed_in ?? Infinity
 
-    const type = 'task';
-    const value = closed_in < currTime ? 'inTime' : 'outTime';
-    const score = doc.score + this.score_rules[type][props.action][value];
+    const type = 'task'
+    const value = closed_in < currTime ? 'inTime' : 'outTime'
+    const score = doc.score + this.score_rules[type][props.action][value]
 
-    const currentWeekday = getCurrentWeekday();
-    const currentTaskCount = doc.weekdayTaskCount[currentWeekday];
-    const updated_at = new Date();
+    const currentWeekday = getCurrentWeekday()
+    const currentTaskCount = doc.weekdayTaskCount[currentWeekday]
+    const updated_at = new Date()
 
     await this.service.update(doc?.id!, {
       ...doc,
@@ -61,18 +60,8 @@ export class HistoryController {
       weekdayTaskCount: {
         ...doc.weekdayTaskCount,
         [currentWeekday]:
-          props.action === 'close'
-            ? currentTaskCount + 1
-            : currentTaskCount - 1,
-      },
-    });
+          props.action === 'close' ? currentTaskCount + 1 : currentTaskCount - 1
+      }
+    })
   }
 }
-
-const instance = new HistoryController({
-  service: new HistoryService({
-    repo: HistoryRepository,
-  }),
-});
-
-export default instance;

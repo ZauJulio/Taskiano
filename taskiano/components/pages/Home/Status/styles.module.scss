@@ -1,4 +1,4 @@
-@import "../../../../styles/vars.scss";
+@import '../../../../styles/vars.scss';
 
 .statusContainer {
   @include flex-box($direction: column, $justify: center, $align: center);

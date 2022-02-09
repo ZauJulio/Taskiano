@@ -1,4 +1,4 @@
-@import "../../styles/vars.scss";
+@import '../../styles/vars.scss';
 
 .topbarContainer {
   position: fixed;
@@ -15,7 +15,7 @@
   border-bottom: 1px solid $gray;
 
   &:before {
-    content: "";
+    content: '';
   }
 
   .searchBar {
@@ -83,7 +83,7 @@
         opacity: 1;
       }
     }
-    
+
     .userOptionsOverlay {
       position: absolute;
       @include flex-box(
@@ -146,7 +146,6 @@
             border-radius: 0px 0px 10px 10px;
           }
         }
-
 
         .deleteAccount {
           &:hover {

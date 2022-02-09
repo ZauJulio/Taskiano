@@ -1,5 +1,5 @@
-import { getTasksInitalContext } from '.';
-import { IHistory } from '../../../types';
+import { getTasksInitalContext } from '.'
+import { IHistory } from '../../../types'
 
 export function getHistoryInitialContext(): IHistory {
   return {
@@ -7,7 +7,7 @@ export function getHistoryInitialContext(): IHistory {
     score: 0,
     updated_at: new Date(),
     lastTaskNumber: getTasksInitalContext().reduce((acc, curr) => {
-      return acc + curr.tasks.length;
+      return acc + curr.tasks.length
     }, 0),
     weekdayTaskCount: {
       mon: 0,
@@ -16,7 +16,7 @@ export function getHistoryInitialContext(): IHistory {
       thu: 0,
       fri: 0,
       sat: 0,
-      sun: 0,
-    },
-  };
+      sun: 0
+    }
+  }
 }

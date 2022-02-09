@@ -1,13 +1,13 @@
-import React from 'react';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import React from 'react'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface IArrow {
-  className?: string;
-  show?: boolean;
-  direction: 'left' | 'right';
-  onClick: () => void;
+  className?: string
+  show?: boolean
+  direction: 'left' | 'right'
+  onClick: () => void
 }
 
 function Arrow(props: IArrow) {
@@ -26,7 +26,7 @@ function Arrow(props: IArrow) {
         </div>
       )}
     </>
-  );
+  )
 }
 
-export default Arrow;
+export default Arrow

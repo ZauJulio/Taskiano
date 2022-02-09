@@ -3,13 +3,13 @@ import {
   ProjectController,
   TaskController,
   HistoryController,
-  GlobalController,
-} from './controllers';
+  GlobalController
+} from './controllers'
 
 export {
   GlobalController,
   UserController,
   ProjectController,
   TaskController,
-  HistoryController,
-};
+  HistoryController
+}

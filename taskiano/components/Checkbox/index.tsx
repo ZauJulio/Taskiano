@@ -1,20 +1,20 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState } from 'react'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface ICheckBox {
-  className?: string;
-  checked?: boolean;
-  onClick?: () => void;
+  className?: string
+  checked?: boolean
+  onClick?: () => void
 }
 
 function CheckBoxFC(props: ICheckBox) {
-  const [checked, setChecked] = useState(props.checked);
+  const [checked, setChecked] = useState(props.checked)
 
   const handleChange = () => {
-    props.onClick && props.onClick();
-    setChecked(!checked);
-  };
+    props.onClick && props.onClick()
+    setChecked(!checked)
+  }
 
   return (
     <svg onClick={handleChange} className={styles.checkbox} fill="currentColor">
@@ -28,8 +28,8 @@ function CheckBoxFC(props: ICheckBox) {
         d="m14 0h-12c-1.1 0-2 0.9-2 2v12c0 1.1 0.9 2 2 2h12c1.1 0 2-0.9 2-2v-12c0-1.1-0.9-2-2-2zm0 14h-12v-12h12v12z"
       />
     </svg>
-  );
+  )
 }
 
-const CheckBox = memo(CheckBoxFC);
-export default CheckBox;
+const CheckBox = memo(CheckBoxFC)
+export default CheckBox

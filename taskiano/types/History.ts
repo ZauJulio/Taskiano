@@ -1,22 +1,22 @@
 export interface Weekdays {
-  [x: string]: number;
-  mon: number;
-  tue: number;
-  wed: number;
-  thu: number;
-  fri: number;
-  sat: number;
-  sun: number;
+  [x: string]: number
+  mon: number
+  tue: number
+  wed: number
+  thu: number
+  fri: number
+  sat: number
+  sun: number
 }
 
 interface IHistory {
-  id?: string;
-  score: number;
-  updated_at?: string | Date | null;
-  weekdayTaskCount: Weekdays;
-  lastTaskNumber?: number;
+  id?: string
+  score: number
+  updated_at?: string | Date | null
+  weekdayTaskCount: Weekdays
+  lastTaskNumber?: number
 
-  userId: string;
+  userId: string
 }
 
-export default IHistory;
+export default IHistory

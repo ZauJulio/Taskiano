@@ -1,17 +1,9 @@
-@import "../../styles/vars.scss";
+@import '../../styles/vars.scss';
 
 .userScore {
-  @include flex-box(
-    $direction: column,
-    $justify: center,
-    $align: center
-  );
+  @include flex-box($direction: column, $justify: center, $align: center);
 
-  background: linear-gradient(
-    125deg,
-    #00000000 40%,
-    #333c59 75%
-  );
+  background: linear-gradient(125deg, #00000000 40%, #333c59 75%);
 
   border-radius: 8px;
   margin-right: 2rem;

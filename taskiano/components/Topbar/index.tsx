@@ -1,21 +1,21 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState } from 'react'
 
-import { useAuth } from '../../hooks/useAuth';
-import { FaUserCircle } from 'react-icons/fa';
+import { useAuth } from '../../hooks/useAuth'
+import { FaUserCircle } from 'react-icons/fa'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface ITopbar {
-  className?: string;
+  className?: string
 }
 
 function TopbarFC(props: ITopbar) {
-  const [search, setSearch] = useState('');
-  const [useImg, setUseImg] = useState(true);
+  const [search, setSearch] = useState('')
+  const [useImg, setUseImg] = useState(true)
 
-  const user = useAuth((ctx) => ctx.user);
-  const signOut = useAuth((ctx) => ctx.signOut);
-  const deleteAccount = useAuth((ctx) => ctx.deleteAccount);
+  const user = useAuth((ctx) => ctx.user)
+  const signOut = useAuth((ctx) => ctx.signOut)
+  const deleteAccount = useAuth((ctx) => ctx.deleteAccount)
 
   return (
     <div className={`${styles.topbarContainer} ${props.className ?? ''}`}>
@@ -57,8 +57,8 @@ function TopbarFC(props: ITopbar) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-const Topbar = memo(TopbarFC);
-export default Topbar;
+const Topbar = memo(TopbarFC)
+export default Topbar

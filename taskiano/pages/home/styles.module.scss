@@ -1,4 +1,4 @@
-@import "../../styles/vars.scss";
+@import '../../styles/vars.scss';
 
 .containerGrid {
   height: 100%;
@@ -7,17 +7,17 @@
   grid-template-rows: 0.8fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    "sideBar topBar topBar topBar topBar topBar topBar topBar topBar topBar topBar"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer"
-    "sideBar content content content content content content content content timer timer";
+    'sideBar topBar topBar topBar topBar topBar topBar topBar topBar topBar topBar'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer'
+    'sideBar content content content content content content content content timer timer';
 
   .sideBar {
     grid-area: sideBar;

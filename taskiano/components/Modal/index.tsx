@@ -1,13 +1,13 @@
-import React, { ReactNode } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
+import React, { ReactNode } from 'react'
+import { AiFillCloseCircle } from 'react-icons/ai'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 interface IModal {
-  className?: string;
-  opacity?: number;
-  children: ReactNode;
-  close?: () => void;
+  className?: string
+  opacity?: number
+  children: ReactNode
+  close?: () => void
 }
 
 function Modal(props: IModal) {
@@ -26,7 +26,7 @@ function Modal(props: IModal) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Modal;
+export default Modal

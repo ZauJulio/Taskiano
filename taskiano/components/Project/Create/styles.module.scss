@@ -1,4 +1,4 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
 .container {
   @include flex-box($direction: column, $justify: flex-start, $align: center);
@@ -115,7 +115,6 @@
           }
         }
       }
-
     }
 
     .description {

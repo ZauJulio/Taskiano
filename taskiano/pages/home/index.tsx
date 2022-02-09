@@ -1,43 +1,43 @@
-import React, { useState } from 'react';
-import Head from 'next/head';
+import React, { useState } from 'react'
+import Head from 'next/head'
 
-import { useAuth } from '../../hooks/useAuth';
-import { useTasks } from '../../hooks/useTasks';
-import { useProjects } from '../../hooks/useProjects';
+import { useAuth } from '../../hooks/useAuth'
+import { useTasks } from '../../hooks/useTasks'
+import { useProjects } from '../../hooks/useProjects'
 
-import Loader from '../../components/Loader';
-import CreateProject from '../../components/Project/Create';
-import ProjectsList from '../../components/Project/List';
-import ProjectsWidget from '../../components/Project/Widget';
-import UserScore from '../../components/UserScore';
-import Sidebar from '../../components/Sidebar';
-import Topbar from '../../components/Topbar';
-import Timers from '../../components/Timers';
+import Loader from '../../components/Loader'
+import CreateProject from '../../components/Project/Create'
+import ProjectsList from '../../components/Project/List'
+import ProjectsWidget from '../../components/Project/Widget'
+import UserScore from '../../components/UserScore'
+import Sidebar from '../../components/Sidebar'
+import Topbar from '../../components/Topbar'
+import Timers from '../../components/Timers'
 
-import Status from '../../components/pages/Home/Status';
-import ProjectsOptions from '../../components/pages/Home/ProjectsOptions';
+import Status from '../../components/pages/Home/Status'
+import ProjectsOptions from '../../components/pages/Home/ProjectsOptions'
 
-import { selectNextTasks, selectOverdueTasks } from '../../utils';
+import { selectNextTasks, selectOverdueTasks } from '../../utils'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 export default function Home() {
-  const tasks = useTasks((state) => state.tasks);
-  const projects = useProjects((ctx) => ctx.projects);
-  const authenticated = useAuth((ctx) => ctx.authenticated);
+  const tasks = useTasks((state) => state.tasks)
+  const projects = useProjects((ctx) => ctx.projects)
+  const authenticated = useAuth((ctx) => ctx.authenticated)
 
-  const nextTasks = selectNextTasks(tasks, 3);
-  const overdueTasks = selectOverdueTasks(tasks, 3);
+  const nextTasks = selectNextTasks(tasks, 3)
+  const overdueTasks = selectOverdueTasks(tasks, 3)
 
-  const [addProject, setAddProject] = useState(false);
-  const [viewIn, setViewIn] = useState<'widgets' | 'list'>('widgets');
+  const [addProject, setAddProject] = useState(false)
+  const [viewIn, setViewIn] = useState<'widgets' | 'list'>('widgets')
 
   const viewHandle = {
     list: () => setViewIn('list'),
     widgets: () => setViewIn('widgets'),
     inList: () => viewIn === 'list',
-    inWidget: () => viewIn === 'widgets',
-  };
+    inWidget: () => viewIn === 'widgets'
+  }
 
   return (
     <div className={styles.containerGrid}>
@@ -72,7 +72,7 @@ export default function Home() {
                 inWidget: () => viewIn === 'widgets',
                 inList: () => viewIn === 'list',
                 handleViewInwidgets: () => setViewIn('widgets'),
-                handleViewInList: () => setViewIn('list'),
+                handleViewInList: () => setViewIn('list')
               }}
               handleAddProject={() => setAddProject(true)}
             />
@@ -86,5 +86,5 @@ export default function Home() {
         </div>
       </main>
     </div>
-  );
+  )
 }

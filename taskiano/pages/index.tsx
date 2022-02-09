@@ -1,13 +1,13 @@
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
-import Logo from '../components/Logo';
-import Particles from '../components/pages/Root/Particles';
+import Logo from '../components/Logo'
+import Particles from '../components/pages/Root/Particles'
 
-import styles from '../styles/root.module.scss';
+import styles from '../styles/root.module.scss'
 
 const Root: NextPage = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <div className={styles.container}>
@@ -28,7 +28,7 @@ const Root: NextPage = () => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Root;
+export default Root

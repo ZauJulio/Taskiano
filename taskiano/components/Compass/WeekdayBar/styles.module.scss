@@ -1,4 +1,4 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
 .weekdayBarContainer {
   @include flex-box($direction: column, $justify: flex-end, $align: center);

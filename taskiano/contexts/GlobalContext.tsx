@@ -2,15 +2,15 @@ import {
   AuthContextProvider,
   ProjectsContextProvider,
   TasksContextProvider,
-  HistoryContextProvider,
-} from '.';
+  HistoryContextProvider
+} from '.'
 
-import type { ReactElement } from 'react';
-import type { IAuthState } from '../types';
+import type { ReactElement } from 'react'
+import type { IAuthState } from '../types'
 
 interface GlobalContextProps {
-  authState: IAuthState;
-  children: ReactElement;
+  authState: IAuthState
+  children: ReactElement
 }
 
 function GlobalContext(props: GlobalContextProps) {
@@ -22,7 +22,7 @@ function GlobalContext(props: GlobalContextProps) {
         </ProjectsContextProvider>
       </HistoryContextProvider>
     </AuthContextProvider>
-  );
+  )
 }
 
-export default GlobalContext;
+export default GlobalContext

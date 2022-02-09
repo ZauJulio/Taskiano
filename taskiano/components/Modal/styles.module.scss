@@ -1,4 +1,4 @@
-@import "../../styles/vars.scss";
+@import '../../styles/vars.scss';
 
 .modal {
   @include absolute-center();
@@ -8,7 +8,6 @@
   backdrop-filter: blur(20px);
 
   .modalContainer {
-
     .closeModal {
       position: absolute;
       top: 4.5rem;

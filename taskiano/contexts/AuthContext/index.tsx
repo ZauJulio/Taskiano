@@ -1,13 +1,13 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from 'react';
 
-import { AuthContext } from "./Provider";
+import { AuthContext } from './Provider';
 
-import { GlobalController, UserController } from "../../lib";
+import { GlobalController, UserController } from '../../lib';
 
-import { ToastDisconnected, ToastTrySignInAgain } from "../../utils/toasts";
+import { ToastDisconnected, ToastTrySignInAgain } from '../../utils/toasts';
 
-import type { IAuthState, IUser } from "../../types";
-import { useRouter } from "next/router";
+import type { IAuthState, IUser } from '../../types';
+import { useRouter } from 'next/router';
 
 interface IAuthContextProvider {
   authState: IAuthState;
@@ -23,11 +23,11 @@ export function AuthContextProvider(props: IAuthContextProvider) {
   const { authUser, mounted, signIn, signOut } = props.authState;
 
   const isDisconnected = () => {
-    return !authUser && mounted && router.pathname !== "/";
+    return !authUser && mounted && router.pathname !== '/';
   };
 
   const isLogging = () => {
-    return router.pathname === "/" || router.pathname === "/login";
+    return router.pathname === '/' || router.pathname === '/login';
   };
 
   const handleAuth = (u: IUser) => {
@@ -76,7 +76,7 @@ export function AuthContextProvider(props: IAuthContextProvider) {
     if (authUser && mounted) {
       fetchUser();
     } else if (isDisconnected()) {
-      !isLogging() ? router.push("/login") : ToastDisconnected();
+      !isLogging() ? router.push('/login') : ToastDisconnected();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

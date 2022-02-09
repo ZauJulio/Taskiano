@@ -1,4 +1,4 @@
-import { IAuthUser } from ".";
+import { IAuthUser } from '.';
 
 export interface IHookAuthProps {
   areLoggedIn?: boolean;

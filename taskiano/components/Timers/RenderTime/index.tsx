@@ -1,7 +1,7 @@
-import React from "react";
-import { remainsFormatValue, remainsFormatText } from "../../../utils";
+import React from 'react';
+import { remainsFormatValue, remainsFormatText } from '../../../utils';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IRenderTime {
   remainingTime: number;

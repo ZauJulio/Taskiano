@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 import {
   fetchSignInMethodsForEmail,
@@ -12,11 +12,11 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   TwitterAuthProvider,
-} from "firebase/auth";
+} from 'firebase/auth';
 
-import { auth } from "../services/Firebase";
+import { auth } from '../services/Firebase';
 
-import { IAuthUser, IAuthState, IHookAuthProps } from "../types";
+import { IAuthUser, IAuthState, IHookAuthProps } from '../types';
 
 interface IAuth {
   authUser: IAuthUser | null;
@@ -61,7 +61,7 @@ function useFirebaseAuth(props: IHookAuthProps): IAuthState {
     auth.signOut().then(() => {
       setState({ authUser: null, mounted: true });
 
-      indexedDB.deleteDatabase("firebaseLocalStorageDb");
+      indexedDB.deleteDatabase('firebaseLocalStorageDb');
 
       props.onSignOut && props.onSignOut();
     });
@@ -101,7 +101,7 @@ function getProvider(providerId: string): AuthProvider {
 }
 
 const ErrorAccountExists = (code: string) => {
-  return code === "auth/account-exists-with-different-credential";
+  return code === 'auth/account-exists-with-different-credential';
 };
 
 export default useFirebaseAuth;

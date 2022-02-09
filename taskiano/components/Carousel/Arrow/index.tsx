@@ -1,12 +1,12 @@
-import React from "react";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import React from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IArrow {
   className?: string;
   show?: boolean;
-  direction: "left" | "right";
+  direction: 'left' | 'right';
   onClick: () => void;
 }
 
@@ -15,10 +15,10 @@ function Arrow(props: IArrow) {
     <>
       {props.show && (
         <div
-          className={`${styles.circleIcon} ${props.className ?? ""}`}
+          className={`${styles.circleIcon} ${props.className ?? ''}`}
           onClick={props.onClick}
         >
-          {props.direction === "left" ? (
+          {props.direction === 'left' ? (
             <IoIosArrowBack />
           ) : (
             <IoIosArrowForward />

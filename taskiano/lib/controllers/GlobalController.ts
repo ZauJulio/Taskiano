@@ -3,22 +3,22 @@ import {
   TaskService,
   ProjectService,
   HistoryService,
-} from "../services";
+} from '../services';
 
 import {
   UserRepository,
   TaskRepository,
   ProjectRepository,
   HistoryRepository,
-} from "../repositories";
+} from '../repositories';
 
 import {
   getHistoryInitialContext,
   getProjectsInitalContext,
   getTasksInitalContext,
-} from "./InitialContext";
+} from './InitialContext';
 
-import type { IProject, IUser } from "../../types";
+import type { IProject, IUser } from '../../types';
 
 interface GlobalControllerProps {
   userService: UserService;
@@ -75,19 +75,19 @@ export class GlobalController implements GlobalControllerProps {
   }
 
   async getUserProjects(userId: string) {
-    return this.projectService.filter("userId", "==", userId);
+    return this.projectService.filter('userId', '==', userId);
   }
 
   async deleteUserHistory(userId: string) {
     const history = (
-      await this.historyService.filter("userId", "==", userId)
+      await this.historyService.filter('userId', '==', userId)
     )[0];
 
     history.id && (await this.historyService.delete(history.id));
   }
 
   async deleteProjectTasks(projectId: string) {
-    const tasks = await this.taskService.filter("projectId", "==", projectId);
+    const tasks = await this.taskService.filter('projectId', '==', projectId);
 
     const delPromises = tasks.map(async (task) => {
       await this.taskService.delete(task.id!);

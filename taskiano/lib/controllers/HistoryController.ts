@@ -1,9 +1,9 @@
-import { HistoryRepository } from "../repositories";
-import { HistoryService } from "../services";
+import { HistoryRepository } from '../repositories';
+import { HistoryService } from '../services';
 
-import { getCurrentWeekday } from "../../utils";
+import { getCurrentWeekday } from '../../utils';
 
-import type { IScoreRules, ITask } from "../../types";
+import type { IScoreRules, ITask } from '../../types';
 
 export class HistoryController {
   private score_rules: IScoreRules = {
@@ -46,8 +46,8 @@ export class HistoryController {
     const currTime = new Date().getTime();
     const closed_in = props.task.closed_in ?? Infinity;
 
-    const type = "task";
-    const value = closed_in < currTime ? "inTime" : "outTime";
+    const type = 'task';
+    const value = closed_in < currTime ? 'inTime' : 'outTime';
     const score = doc.score + this.score_rules[type][props.action][value];
 
     const currentWeekday = getCurrentWeekday();
@@ -61,7 +61,7 @@ export class HistoryController {
       weekdayTaskCount: {
         ...doc.weekdayTaskCount,
         [currentWeekday]:
-          props.action === "close"
+          props.action === 'close'
             ? currentTaskCount + 1
             : currentTaskCount - 1,
       },

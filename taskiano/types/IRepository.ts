@@ -1,5 +1,5 @@
-import { Timestamp } from "firebase/firestore";
-import { SchemaOf } from "yup";
+import { Timestamp } from 'firebase/firestore';
+import { SchemaOf } from 'yup';
 
 export interface IRepositoryConstructor {
   ref: any;
@@ -8,16 +8,16 @@ export interface IRepositoryConstructor {
 }
 
 export type WhereFilterOp =
-  | "<"
-  | "<="
-  | "=="
-  | "!="
-  | ">="
-  | ">"
-  | "array-contains"
-  | "in"
-  | "array-contains-any"
-  | "not-in";
+  | '<'
+  | '<='
+  | '=='
+  | '!='
+  | '>='
+  | '>'
+  | 'array-contains'
+  | 'in'
+  | 'array-contains-any'
+  | 'not-in';
 
 export interface IRepository<T> {
   index(_id: string): Promise<T[]>;

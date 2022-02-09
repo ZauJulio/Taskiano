@@ -3,10 +3,10 @@ import {
   ProjectsContextProvider,
   TasksContextProvider,
   HistoryContextProvider,
-} from ".";
+} from '.';
 
-import type { ReactElement } from "react";
-import type { IAuthState } from "../types";
+import type { ReactElement } from 'react';
+import type { IAuthState } from '../types';
 
 interface GlobalContextProps {
   authState: IAuthState;

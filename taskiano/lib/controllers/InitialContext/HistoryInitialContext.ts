@@ -1,9 +1,9 @@
-import { getTasksInitalContext } from ".";
-import { IHistory } from "../../../types";
+import { getTasksInitalContext } from '.';
+import { IHistory } from '../../../types';
 
 export function getHistoryInitialContext(): IHistory {
   return {
-    userId: "",
+    userId: '',
     score: 0,
     updated_at: new Date(),
     lastTaskNumber: getTasksInitalContext().reduce((acc, curr) => {

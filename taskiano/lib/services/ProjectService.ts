@@ -1,4 +1,4 @@
-import { IRepository, IProject, WhereFilterOp } from "../../types";
+import { IRepository, IProject, WhereFilterOp } from '../../types';
 
 interface ProjectServiceProps {
   repo: IRepository<IProject>;
@@ -44,7 +44,7 @@ export class ProjectService {
   }
 
   async index(userId: string) {
-    const data = await this.repo.filter("userId", "==", userId);
+    const data = await this.repo.filter('userId', '==', userId);
 
     return data.map((project) => this.castDate(project));
   }

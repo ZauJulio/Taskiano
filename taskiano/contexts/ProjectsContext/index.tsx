@@ -1,10 +1,10 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 
-import { useAuth } from "../../hooks/useAuth";
-import { ProjectsContext } from "./Provider";
-import { ProjectController } from "../../lib";
+import { useAuth } from '../../hooks/useAuth';
+import { ProjectsContext } from './Provider';
+import { ProjectController } from '../../lib';
 
-import type { IProject } from "../../types";
+import type { IProject } from '../../types';
 
 interface IProjectsContextProvider {
   children: ReactNode;
@@ -17,7 +17,7 @@ export function ProjectsContextProvider(props: IProjectsContextProvider) {
   const authenticated = useAuth((ctx) => ctx.authenticated);
 
   const fetchProjects = useCallback(async () => {
-    setProjects(await ProjectController.filter("userId", "==", user?.id));
+    setProjects(await ProjectController.filter('userId', '==', user?.id));
   }, [user]);
 
   const updateProjects = useCallback((changedProject: IProject) => {

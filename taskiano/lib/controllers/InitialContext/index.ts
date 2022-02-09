@@ -1,6 +1,6 @@
-import { getHistoryInitialContext } from "./HistoryInitialContext";
-import { getProjectsInitalContext } from "./ProjectsInitalContext";
-import { getTasksInitalContext } from "./TasksInitalContext";
+import { getHistoryInitialContext } from './HistoryInitialContext';
+import { getProjectsInitalContext } from './ProjectsInitalContext';
+import { getTasksInitalContext } from './TasksInitalContext';
 
 export {
   getHistoryInitialContext,

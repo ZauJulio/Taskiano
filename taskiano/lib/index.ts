@@ -4,7 +4,7 @@ import {
   TaskController,
   HistoryController,
   GlobalController,
-} from "./controllers";
+} from './controllers';
 
 export {
   GlobalController,

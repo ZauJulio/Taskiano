@@ -1,16 +1,16 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState } from 'react';
 
-import { useAuth } from "../../hooks/useAuth";
-import { FaUserCircle } from "react-icons/fa";
+import { useAuth } from '../../hooks/useAuth';
+import { FaUserCircle } from 'react-icons/fa';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface ITopbar {
   className?: string;
 }
 
 function TopbarFC(props: ITopbar) {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [useImg, setUseImg] = useState(true);
 
   const user = useAuth((ctx) => ctx.user);
@@ -18,7 +18,7 @@ function TopbarFC(props: ITopbar) {
   const deleteAccount = useAuth((ctx) => ctx.deleteAccount);
 
   return (
-    <div className={`${styles.topbarContainer} ${props.className ?? ""}`}>
+    <div className={`${styles.topbarContainer} ${props.className ?? ''}`}>
       <input
         type="text"
         value={search}

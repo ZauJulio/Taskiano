@@ -1,7 +1,7 @@
-import React from "react";
-import { useHistory } from "../../hooks/useHistory";
+import React from 'react';
+import { useHistory } from '../../hooks/useHistory';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 function UserScore() {
   const history = useHistory((ctx) => ctx.history);

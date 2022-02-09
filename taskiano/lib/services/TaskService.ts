@@ -1,4 +1,4 @@
-import { IRepository, ITask, WhereFilterOp } from "../../types";
+import { IRepository, ITask, WhereFilterOp } from '../../types';
 
 interface TaskServiceProps {
   repo: IRepository<ITask>;
@@ -39,7 +39,7 @@ export class TaskService {
   }
 
   async index(userId: string) {
-    const data = await this.repo.filter("userId", "==", userId);
+    const data = await this.repo.filter('userId', '==', userId);
 
     return data.map((task) => this.castDate(task));
   }

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import Logo from "../Logo";
-import styles from "./styles.module.scss";
+import Logo from '../Logo';
+import styles from './styles.module.scss';
 
 interface ISidebar {
   className?: string;
@@ -9,7 +9,7 @@ interface ISidebar {
 
 function Sidebar(props: ISidebar) {
   return (
-    <div className={`${styles.sidebarContainer} ${props.className ?? ""}`}>
+    <div className={`${styles.sidebarContainer} ${props.className ?? ''}`}>
       <div className={styles.logoIcon}>
         <Logo />
       </div>

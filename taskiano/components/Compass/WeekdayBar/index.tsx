@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IWeekdayBar {
   day: string;
@@ -10,13 +10,13 @@ interface IWeekdayBar {
 }
 
 const translateDays: { [key: string]: string } = {
-  mon: "Seg",
-  tue: "Ter",
-  wed: "Qua",
-  thu: "Qui",
-  fri: "Sex",
-  sat: "Sab",
-  sun: "Dom",
+  mon: 'Seg',
+  tue: 'Ter',
+  wed: 'Qua',
+  thu: 'Qui',
+  fri: 'Sex',
+  sat: 'Sab',
+  sun: 'Dom',
 };
 
 function WeekdayBar(props: IWeekdayBar) {
@@ -33,7 +33,7 @@ function WeekdayBar(props: IWeekdayBar) {
         <p>{translateDays[props.day]}</p>
         <div className={styles.tasksDone}>
           <h1>{props.value}</h1>
-          <p>{`Task's`}</p>
+          <p>{'Task\'s'}</p>
         </div>
       </div>
     </div>

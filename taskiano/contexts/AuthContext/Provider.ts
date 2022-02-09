@@ -1,5 +1,5 @@
-import { createContext } from "use-context-selector";
-import type { IUser } from "../../types";
+import { createContext } from 'use-context-selector';
+import type { IUser } from '../../types';
 
 export interface IAuthContext {
   user?: IUser;

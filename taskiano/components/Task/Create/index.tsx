@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import Modal from "../../Modal";
+import Modal from '../../Modal';
 
-import EditorTask from "../Editor";
+import EditorTask from '../Editor';
 
 interface ICreateTask {
   projectColor?: string;

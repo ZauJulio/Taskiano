@@ -1,9 +1,9 @@
-import { IRepository, IHistory, WhereFilterOp } from "../../types";
+import { IRepository, IHistory, WhereFilterOp } from '../../types';
 import {
   getCurrentWeekday,
   getDaysOfDifference,
   weekdaysList,
-} from "../../utils";
+} from '../../utils';
 
 interface HistoryServiceProps {
   repo: IRepository<IHistory>;
@@ -47,7 +47,7 @@ export class HistoryService {
   }
 
   async getHistoryOfUser(userId?: string) {
-    const docs = await this.filter("userId", "==", userId);
+    const docs = await this.filter('userId', '==', userId);
 
     return (await this.resetHistory(docs[0])) ?? docs[0];
   }
@@ -74,7 +74,7 @@ export class HistoryService {
   }
 
   async index(userId: string) {
-    const historys = await this.repo.filter("userId", "==", userId);
+    const historys = await this.repo.filter('userId', '==', userId);
 
     return historys.map((history) => this.castDate(history));
   }

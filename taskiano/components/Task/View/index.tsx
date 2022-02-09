@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import { RiEdit2Fill } from "react-icons/ri";
-import { BsFillTrashFill } from "react-icons/bs";
-import { IoMdArchive } from "react-icons/io";
+import { RiEdit2Fill } from 'react-icons/ri';
+import { BsFillTrashFill } from 'react-icons/bs';
+import { IoMdArchive } from 'react-icons/io';
 
-import { useTasks } from "../../../hooks/useTasks";
-import { useProjects } from "../../../hooks/useProjects";
+import { useTasks } from '../../../hooks/useTasks';
+import { useProjects } from '../../../hooks/useProjects';
 
-import EditorTask from "../Editor";
-import Modal from "../../Modal";
-import MarkdownPreview from "../../MarkdownPreview";
+import EditorTask from '../Editor';
+import Modal from '../../Modal';
+import MarkdownPreview from '../../MarkdownPreview';
 
-import type { ITask } from "../../../types";
-import colors from "../../../styles/colors";
-import styles from "./styles.module.scss";
+import type { ITask } from '../../../types';
+import colors from '../../../styles/colors';
+import styles from './styles.module.scss';
 
 interface IView {
   task: ITask;
@@ -30,9 +30,9 @@ function View(props: IView) {
   const tryDeleteTask = () => {
     try {
       toast.promise(deleteTask(props.task.id), {
-        pending: "Excluindo",
-        success: "Tudo certo 🦄",
-        error: "Ah não! Verifique os dados 🤯",
+        pending: 'Excluindo',
+        success: 'Tudo certo 🦄',
+        error: 'Ah não! Verifique os dados 🤯',
       });
 
       props.onClose();

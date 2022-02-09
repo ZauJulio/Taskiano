@@ -1,4 +1,5 @@
-import { Html, Head, Main, NextScript } from "next/document";
+/* eslint-disable @next/next/no-page-custom-font */
+import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (

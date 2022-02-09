@@ -1,10 +1,10 @@
-import { NextPage } from "next";
-import { useRouter } from "next/router";
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
-import Logo from "../components/Logo";
-import Particles from "../components/pages/Root/Particles";
+import Logo from '../components/Logo';
+import Particles from '../components/pages/Root/Particles';
 
-import styles from "../styles/root.module.scss";
+import styles from '../styles/root.module.scss';
 
 const Root: NextPage = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const Root: NextPage = () => {
 
         <button
           className={styles.loginBtn}
-          onClick={() => router.push("/login")}
+          onClick={() => router.push('/login')}
         >
           LOGIN
         </button>

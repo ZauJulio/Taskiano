@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import { useTasks } from "../../hooks/useTasks";
-import { useProjects } from "../../hooks/useProjects";
+import { useTasks } from '../../hooks/useTasks';
+import { useProjects } from '../../hooks/useProjects';
 import {
   calcRemainingTime,
   filterActiveTasks,
   filterTasksInProgress,
   getTasksOfProject,
   orderByRemainingTime,
-} from "../../utils";
+} from '../../utils';
 
-import type { IProject, ITask, IProjectTasks } from "../../types";
+import type { IProject, ITask, IProjectTasks } from '../../types';
 
 function useTimersState() {
   const tasks: IProjectTasks[] = useTasks((state) => state.tasks);

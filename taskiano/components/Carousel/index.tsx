@@ -1,10 +1,10 @@
-import React, { ReactNode, Children } from "react";
+import React, { ReactNode, Children } from 'react';
 
-import usePage from "./usePage";
-import Arrow from "./Arrow";
-import PageIndicators from "./PageIndicator";
+import usePage from './usePage';
+import Arrow from './Arrow';
+import PageIndicators from './PageIndicator';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface ICarousel {
   className?: string;

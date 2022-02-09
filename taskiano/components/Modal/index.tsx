@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
+import React, { ReactNode } from 'react';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IModal {
   className?: string;

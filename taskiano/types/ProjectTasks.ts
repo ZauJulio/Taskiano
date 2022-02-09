@@ -1,4 +1,4 @@
-import { ITask } from ".";
+import { ITask } from '.';
 
 interface IProjectTasks {
   projectId: string;

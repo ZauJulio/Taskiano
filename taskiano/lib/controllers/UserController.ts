@@ -1,7 +1,7 @@
-import { UserRepository } from "../repositories";
-import { UserService } from "../services";
+import { UserRepository } from '../repositories';
+import { UserService } from '../services';
 
-import type { IAuthUser } from "../../types";
+import type { IAuthUser } from '../../types';
 
 export class UserController {
   private service: UserService;

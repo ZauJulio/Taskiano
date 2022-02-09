@@ -1,12 +1,12 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
-import Markdown from "react-markdown";
+import Markdown from 'react-markdown';
 
-import gfm from "remark-gfm";
-import math from "remark-math";
-import katex from "rehype-katex";
+import gfm from 'remark-gfm';
+import math from 'remark-math';
+import katex from 'rehype-katex';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IMarkdownPreview {
   className?: string;
@@ -25,7 +25,7 @@ const MarkdownPreviewFC = (props: IMarkdownPreview) => {
         remarkPlugins={[gfm, math]}
         skipHtml={true}
       >
-        {props.note ?? ""}
+        {props.note ?? ''}
       </Markdown>
     </div>
   );

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import EditorProject from "../Editor";
+import EditorProject from '../Editor';
 
 interface ICreateProject {
   close: () => void;

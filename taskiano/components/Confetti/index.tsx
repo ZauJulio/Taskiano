@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import Particles from "react-tsparticles";
+import Particles from 'react-tsparticles';
 
-import colors from "../../styles/colors";
-import styles from "./styles.module.scss";
+import colors from '../../styles/colors';
+import styles from './styles.module.scss';
 
 interface IParticles {
   className?: string;
@@ -27,15 +27,15 @@ function Confetti(props: IParticles) {
                 colors.highPurple,
               ],
             },
-            shape: { type: ["square"] },
+            shape: { type: ['square'] },
             number: { value: 50 },
             opacity: {
               value: 1,
               animation: {
                 enable: true,
                 minimumValue: 0,
-                startValue: "max",
-                destroy: "min",
+                startValue: 'max',
+                destroy: 'min',
               },
             },
             size: { value: 5 },
@@ -48,12 +48,12 @@ function Confetti(props: IParticles) {
             },
             rotate: {
               value: { min: 0, max: 360 },
-              direction: "random",
+              direction: 'random',
               animation: { enable: true, speed: 20 },
             },
             tilt: {
               enable: true,
-              direction: "random",
+              direction: 'random',
               value: { min: 0, max: 360 },
               animation: { enable: true, speed: 60 },
             },

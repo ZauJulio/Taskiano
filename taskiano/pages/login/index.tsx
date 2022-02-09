@@ -1,27 +1,27 @@
-import React from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import React from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import {
   FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
   TwitterAuthProvider,
-} from "firebase/auth";
+} from 'firebase/auth';
 
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
-import { AiFillTwitterCircle, AiFillGithub } from "react-icons/ai";
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
+import { AiFillTwitterCircle, AiFillGithub } from 'react-icons/ai';
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from '../../hooks/useAuth';
 
-import Logo from "../../components/Logo";
-import Particles from "../../components/pages/Login/Particles";
-import ButtonProvider from "../../components/pages/Login/ButtonProvider";
+import Logo from '../../components/Logo';
+import Particles from '../../components/pages/Login/Particles';
+import ButtonProvider from '../../components/pages/Login/ButtonProvider';
 
-import { NextPage } from "../../types";
+import { NextPage } from '../../types';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -29,7 +29,7 @@ const Login: NextPage = () => {
 
   const handleSignIn = (provider: string) => {
     signIn(provider);
-    router.push("/home");
+    router.push('/home');
   };
 
   return (

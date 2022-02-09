@@ -1,4 +1,4 @@
-import { IRepository, IUser } from "../../types";
+import { IRepository, IUser } from '../../types';
 
 interface UserServiceProps {
   repo: IRepository<IUser>;

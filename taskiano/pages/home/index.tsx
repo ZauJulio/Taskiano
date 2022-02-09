@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import Head from "next/head";
+import React, { useState } from 'react';
+import Head from 'next/head';
 
-import { useAuth } from "../../hooks/useAuth";
-import { useTasks } from "../../hooks/useTasks";
-import { useProjects } from "../../hooks/useProjects";
+import { useAuth } from '../../hooks/useAuth';
+import { useTasks } from '../../hooks/useTasks';
+import { useProjects } from '../../hooks/useProjects';
 
-import Loader from "../../components/Loader";
-import CreateProject from "../../components/Project/Create";
-import ProjectsList from "../../components/Project/List";
-import ProjectsWidget from "../../components/Project/Widget";
-import UserScore from "../../components/UserScore";
-import Sidebar from "../../components/Sidebar";
-import Topbar from "../../components/Topbar";
-import Timers from "../../components/Timers";
+import Loader from '../../components/Loader';
+import CreateProject from '../../components/Project/Create';
+import ProjectsList from '../../components/Project/List';
+import ProjectsWidget from '../../components/Project/Widget';
+import UserScore from '../../components/UserScore';
+import Sidebar from '../../components/Sidebar';
+import Topbar from '../../components/Topbar';
+import Timers from '../../components/Timers';
 
-import Status from "../../components/pages/Home/Status";
-import ProjectsOptions from "../../components/pages/Home/ProjectsOptions";
+import Status from '../../components/pages/Home/Status';
+import ProjectsOptions from '../../components/pages/Home/ProjectsOptions';
 
-import { selectNextTasks, selectOverdueTasks } from "../../utils";
+import { selectNextTasks, selectOverdueTasks } from '../../utils';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 export default function Home() {
   const tasks = useTasks((state) => state.tasks);
@@ -30,13 +30,13 @@ export default function Home() {
   const overdueTasks = selectOverdueTasks(tasks, 3);
 
   const [addProject, setAddProject] = useState(false);
-  const [viewIn, setViewIn] = useState<"widgets" | "list">("widgets");
+  const [viewIn, setViewIn] = useState<'widgets' | 'list'>('widgets');
 
   const viewHandle = {
-    list: () => setViewIn("list"),
-    widgets: () => setViewIn("widgets"),
-    inList: () => viewIn === "list",
-    inWidget: () => viewIn === "widgets",
+    list: () => setViewIn('list'),
+    widgets: () => setViewIn('widgets'),
+    inList: () => viewIn === 'list',
+    inWidget: () => viewIn === 'widgets',
   };
 
   return (
@@ -69,10 +69,10 @@ export default function Home() {
 
             <ProjectsOptions
               view={{
-                inWidget: () => viewIn === "widgets",
-                inList: () => viewIn === "list",
-                handleViewInwidgets: () => setViewIn("widgets"),
-                handleViewInList: () => setViewIn("list"),
+                inWidget: () => viewIn === 'widgets',
+                inList: () => viewIn === 'list',
+                handleViewInwidgets: () => setViewIn('widgets'),
+                handleViewInList: () => setViewIn('list'),
               }}
               handleAddProject={() => setAddProject(true)}
             />

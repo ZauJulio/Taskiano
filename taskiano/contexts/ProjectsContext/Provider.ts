@@ -1,5 +1,5 @@
-import { createContext } from "use-context-selector";
-import type { IProject } from "../../types";
+import { createContext } from 'use-context-selector';
+import type { IProject } from '../../types';
 
 export interface IProjectsContext {
   projects: IProject[];

@@ -1,20 +1,20 @@
-import Head from "next/head";
+import Head from 'next/head';
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
-import Loader from "../components/Loader";
+import Loader from '../components/Loader';
 
-import GlobalContext from "../contexts/GlobalContext";
-import { useAuthHook, useFirebaseAuth, useRouterLoading } from "../hooks";
+import GlobalContext from '../contexts/GlobalContext';
+import { useAuthHook, useFirebaseAuth, useRouterLoading } from '../hooks';
 
-import stylesToast from "../styles/Toast.module.scss";
+import stylesToast from '../styles/Toast.module.scss';
 
-import type { AppProps } from "next/app";
-import type { IAuthState } from "../types";
+import type { AppProps } from 'next/app';
+import type { IAuthState } from '../types';
 
-import "../services/Firebase";
-import "../styles/globals.scss";
-import "react-toastify/dist/ReactToastify.css";
+import '../services/Firebase';
+import '../styles/globals.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface MyAppProps extends AppProps {
   authState: IAuthState;

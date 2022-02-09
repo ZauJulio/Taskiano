@@ -1,8 +1,8 @@
-import { getProjectsInitalContext } from "./InitialContext";
-import { ProjectRepository } from "./../repositories";
-import { ProjectService } from "./../services";
+import { getProjectsInitalContext } from './InitialContext';
+import { ProjectRepository } from './../repositories';
+import { ProjectService } from './../services';
 
-import type { IProject, WhereFilterOp } from "../../types";
+import type { IProject, WhereFilterOp } from '../../types';
 
 export class ProjectController {
   private service: ProjectService;
@@ -28,7 +28,7 @@ export class ProjectController {
   }
 
   async getProjects(userId: string) {
-    return this.service.filter("userId", "==", userId);
+    return this.service.filter('userId', '==', userId);
   }
 
   async create(data: IProject) {

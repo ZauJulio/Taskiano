@@ -12,22 +12,22 @@ import {
   DocumentData,
   CollectionReference,
   DocumentReference,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
-import { SchemaOf } from "yup";
+import { SchemaOf } from 'yup';
 
 import {
   IRepository,
   IRepositoryConstructor,
   WhereFilterOp,
-} from "../../../../types";
+} from '../../../../types';
 
 export interface FireRepositoryProps extends IRepositoryConstructor {
   ref: CollectionReference<DocumentData>;
 }
 
 export class FireRepository<T> implements IRepository<T> {
-  ref: FireRepositoryProps["ref"];
+  ref: FireRepositoryProps['ref'];
   schema: SchemaOf<any>;
   _name: string;
 
@@ -38,7 +38,7 @@ export class FireRepository<T> implements IRepository<T> {
   }
 
   async index(userId: string): Promise<T[]> {
-    return !userId ? [] : this.filter("userId", "==", userId);
+    return !userId ? [] : this.filter('userId', '==', userId);
   }
 
   async get(_id: any): Promise<T | undefined> {
@@ -86,7 +86,7 @@ export class FireRepository<T> implements IRepository<T> {
   }
 
   async getDocsOfUser(userId?: string): Promise<T[]> {
-    return !userId ? [] : this.filter("userId", "==", userId);
+    return !userId ? [] : this.filter('userId', '==', userId);
   }
 
   async filter(prop: string, op: WhereFilterOp, value: any): Promise<T[]> {

@@ -1,4 +1,4 @@
-import { ITask } from "../../../types";
+import { ITask } from '../../../types';
 
 function addTimer(minutes: number = 30) {
   var now = new Date();
@@ -15,21 +15,21 @@ interface InitialTaskContext {
 export function getTasksInitalContext(): InitialTaskContext[] {
   return [
     {
-      projectName: "Hello World",
+      projectName: 'Hello World',
       tasks: [
         {
-          title: "Hello World",
-          note: "# 1º Task",
-          status: "open",
+          title: 'Hello World',
+          note: '# 1º Task',
+          status: 'open',
           created_at: new Date(),
           closed_in: null,
           timer: addTimer(61),
           number: 1,
         },
         {
-          title: "Ops, Tarefa atrasada?",
-          note: "# Só um exemplo 😅",
-          status: "open",
+          title: 'Ops, Tarefa atrasada?',
+          note: '# Só um exemplo 😅',
+          status: 'open',
           created_at: new Date(),
           closed_in: null,
           timer: addTimer(30),
@@ -38,12 +38,12 @@ export function getTasksInitalContext(): InitialTaskContext[] {
       ],
     },
     {
-      projectName: "Sobre",
+      projectName: 'Sobre',
       tasks: [
         {
-          title: "Projetos",
-          note: require("../../md/aboutProject.md").default,
-          status: "open",
+          title: 'Projetos',
+          note: require('../../md/aboutProject.md').default,
+          status: 'open',
           created_at: new Date(),
           closed_in: null,
           timer: null,

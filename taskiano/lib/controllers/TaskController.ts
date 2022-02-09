@@ -1,7 +1,7 @@
-import { TaskRepository } from "./../repositories";
-import { TaskService } from "../services";
+import { TaskRepository } from './../repositories';
+import { TaskService } from '../services';
 
-import type { ITask } from "../../types";
+import type { ITask } from '../../types';
 
 export class TaskController {
   private service: TaskService;
@@ -19,7 +19,7 @@ export class TaskController {
   }
 
   async getTasks(projectId: string) {
-    return this.service.filter("projectId", "==", projectId);
+    return this.service.filter('projectId', '==', projectId);
   }
 
   async update(id: string, data: Partial<ITask>) {
@@ -30,14 +30,14 @@ export class TaskController {
     await this.service.delete(id);
   }
 
-  async setStatus(id: string, newStatus: "open" | "close") {
+  async setStatus(id: string, newStatus: 'open' | 'close') {
     const data = await this.service.get(id);
 
     if (data && data.status !== newStatus) {
       return this.service.update(id, {
         ...data,
         status: newStatus,
-        closed_in: newStatus === "close" ? new Date() : null,
+        closed_in: newStatus === 'close' ? new Date() : null,
       });
     }
   }

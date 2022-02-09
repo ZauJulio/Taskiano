@@ -1,4 +1,4 @@
-let secureEnv = require("secure-env");
+let secureEnv = require('secure-env');
 
 const enc_env = secureEnv({
   secret: process.env.SECURE_ENV,

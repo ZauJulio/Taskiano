@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import ProjectList, { ITaskProject } from "./ProjectList";
-import { getTasksOfProject } from "../../../utils";
+import ProjectList, { ITaskProject } from './ProjectList';
+import { getTasksOfProject } from '../../../utils';
 
-import type { IProject, IProjectTasks } from "../../../types";
+import type { IProject, IProjectTasks } from '../../../types';
 
 interface IProjectsList {
   tasks: IProjectTasks[];

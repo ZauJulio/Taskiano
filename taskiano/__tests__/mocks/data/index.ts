@@ -2,7 +2,10 @@ import { users } from './users'
 import { tasks } from './tasks'
 import { projects } from './projects'
 import { historys } from './historys'
-import Collections from '../../types/Collections'
+
+interface Collections {
+  [key: string]: any[]
+}
 
 export { users, tasks, projects, historys }
 

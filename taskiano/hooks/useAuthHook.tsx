@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { IAuthState, IHookAuthProps, NextRouter } from '../types'
+import { IAuthState, IHookAuthProps } from '../types'
 
 import {
   ToastEmailExists,
@@ -8,11 +8,11 @@ import {
   ToastFoundedEmail
 } from '../utils/toasts'
 
-interface useAuthHookProps {
+interface UseAuthHookProps {
   authHook: (props: IHookAuthProps) => IAuthState
 }
 
-function useAuthHook(props: useAuthHookProps): IAuthState {
+function useAuthHook(props: UseAuthHookProps): IAuthState {
   const router = useRouter()
 
   return props.authHook({

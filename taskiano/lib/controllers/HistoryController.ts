@@ -12,8 +12,8 @@ export class HistoryController {
         outTime: 1
       },
       open: {
-        inTime: -1,
-        outTime: -2
+        inTime: -2,
+        outTime: -1
       }
     }
   }

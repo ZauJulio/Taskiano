@@ -31,7 +31,7 @@ export let projects: IProject[] = [
     closed_in: null,
     description: 'Terceiro projeto',
     color: 2123326,
-    hasArchived: false,
+    hasArchived: true,
     tasks: ['32a9b0cd-e311-433d-833b-5853cedffc30'],
     userId: '7fd18545-8054-45f5-9d76-9addd179d13b'
   }

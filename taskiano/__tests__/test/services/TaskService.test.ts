@@ -51,4 +51,15 @@ describe('TaskService unit', () => {
 
     expect(checkTask).toBeUndefined()
   })
+
+  it('Filter a task', async () => {
+    const createTask = await service.create(tasks[0])
+  
+    expect(createTask).toBeDefined()
+    expect(createTask?.title).toBe(tasks[0].title)
+
+    const filterTask = await service.filter('projectId', '==', 'abef7153-742f-4b20-bb42-ae772053050b')
+    
+    expect(filterTask).toBeDefined()
+  })
 })

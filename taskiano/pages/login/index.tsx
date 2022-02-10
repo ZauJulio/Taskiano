@@ -16,7 +16,6 @@ import { AiFillTwitterCircle, AiFillGithub } from 'react-icons/ai'
 import { useAuth } from '../../hooks/useAuth'
 
 import Logo from '../../components/Logo'
-import Particles from '../../components/pages/Login/Particles'
 import ButtonProvider from '../../components/pages/Login/ButtonProvider'
 
 import { NextPage } from '../../types'
@@ -45,7 +44,6 @@ const Login: NextPage = () => {
       </Head>
 
       <aside className={styles.sidebar}>
-        {/* <Particles /> */}
 
         <div className={styles.logo}>
           <div className={styles.logoContainer}>

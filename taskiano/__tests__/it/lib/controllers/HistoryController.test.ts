@@ -21,9 +21,19 @@ const controller = new HistoryController({
 ////////////////////////////////////////
 
 describe('controller', () => {
-  it('Update Last Task Number', async () => {
-    // const history = await controller.updateLastTaskNumber({ userId: historys[0].userId, taskNumber: 5 })
-    // console.log("aaaaaaaaaaaaa", history)
-    // expect(history).toBeDefined()
+  it('Should update last task number', async () => {
+    await controller.updateLastTaskNumber({ userId: historys[0].userId, taskNumber: 5 })
+    const historyOfUser = await controller.getHistoryOfUser(historys[0].userId)
+    expect(historyOfUser).toBeDefined()
+    expect(historyOfUser.lastTaskNumber).toBe(5)
   })
+
+  it('Should get last task number', async () => {
+    const lastTaskNumber = await controller.getLastTaskNumber(historys[0].userId)
+    expect(lastTaskNumber).toBeDefined()
+    expect(lastTaskNumber).toBe(5)
+  })
+
+
+  
 })

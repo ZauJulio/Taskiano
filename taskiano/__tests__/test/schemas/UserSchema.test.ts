@@ -14,10 +14,6 @@ describe('user schema', () => {
     const schema = await UserSchema.validate(data, { abortEarly: false })
 
     expect(schema).toBeDefined()
-    expect(typeof schema.id).toBe('string')
-    expect(typeof schema.username).toBe('string')
-    expect(typeof schema.avatar).toBe('string')
-    expect(typeof schema.email).toBe('string')
   })
 
   it('should fail to validate user schema', async () => {

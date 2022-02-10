@@ -34,4 +34,10 @@ describe('UserService unit', () => {
     expect(user).toBeDefined()
     expect(user?.id).toBe(users[0].id)
   })
+
+  it('Should delete a user', async () => {
+    const user = await service.delete('7fd18545-8054-45f5-9d76-9addd179d13b')
+
+    expect(user).toBeFalsy()
+  })
 })

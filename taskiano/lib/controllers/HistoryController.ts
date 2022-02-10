@@ -42,11 +42,11 @@ export class HistoryController {
     const doc = await this.getHistoryOfUser(props.userId)
     if (!doc) return
 
-    const currTime = new Date().getTime()
-    const closed_in = props.task.closed_in ?? Infinity
+    const timer = props.task.timer ?? Infinity
+    const currTime = new Date()
 
     const type = 'task'
-    const value = closed_in < currTime ? 'inTime' : 'outTime'
+    const value = currTime < timer ? 'inTime' : 'outTime'
     const score = doc.score + this.score_rules[type][props.action][value]
 
     const currentWeekday = getCurrentWeekday()

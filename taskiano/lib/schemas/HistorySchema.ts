@@ -2,6 +2,7 @@ import * as Yup from 'yup'
 
 const HistorySchema = Yup.object().shape({
   id: Yup.string(),
+  score: Yup.number().required(),
   updated_at: Yup.date().required(),
   weekdayTaskCount: Yup.object().shape({
     mon: Yup.number().required(),

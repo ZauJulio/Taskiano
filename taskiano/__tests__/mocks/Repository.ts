@@ -8,6 +8,7 @@ interface MockRepositoryProps<T> extends IRepositoryConstructor {
   data: T[]
 }
 
+
 export class Repository<T> implements IRepository<T> {
   ref: any
   schema: SchemaOf<any>
@@ -60,7 +61,19 @@ export class Repository<T> implements IRepository<T> {
   }
 
   filter(prop: string, op: WhereFilterOp, value: any): Promise<T[]> {
-    throw new Error('Method not implemented.')
+    return this.data.filter((_doc: any) => {
+      if (op === '==') return _doc[prop] === value
+      else if (op === '!=') return _doc[prop] !== value
+      else if (op === '>') return _doc[prop] > value
+      else if (op === '<') return _doc[prop] < value
+      else if (op === '>=') return _doc[prop] >= value
+      else if (op === '<=') return _doc[prop] <= value
+      else if (op === 'array-contains') return _doc[prop].includes(value)
+      else if (op === 'in') return value.includes(_doc[prop])
+      else if (op === 'not-in') return !value.includes(_doc[prop])
+      else if (op === 'array-contains-any')
+        return value.some((_value: any) => _doc[prop].includes(_value))
+    })
   }
 
   async Validator(data: T) {

@@ -21,3 +21,11 @@ Ao executar o comando do coverage ira criar uma pasta no diretorio \Taskiano\Tas
 Recentemente a cobertura de teste do projeto apresentou os resultados que estão sendo exibidos na imagem abaixo:
 
 ![image](https://user-images.githubusercontent.com/41094007/153513143-4d8e4133-aa79-4964-acb3-80d6716494d3.png)
+/Taskiano/blob/main/docs/COBERTURA_TESTES.md
+
+##Documentos
+
+| Documentos                            | Link                                                                                                 |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Teste de unidade                      | [Doc test unit➡️](https://github.com/ZauJulio/Taskiano/blob/main/docs/TESTE_UNIDADE.md)|
+| Teste de integração                   | [Doc test integration➡️](https://github.com/ZauJulio/Taskiano/blob/main/docs/TESTE_INTEGRACAO.md)|

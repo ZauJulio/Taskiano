@@ -27,4 +27,11 @@ describe('UserService unit', () => {
     expect(user).toBeDefined()
     expect(user?.id).toBe(users[0].id)
   })
+
+  it('Should get a user', async () => {
+    const user = await service.get('7fd18545-8054-45f5-9d76-9addd179d13b')
+
+    expect(user).toBeDefined()
+    expect(user?.id).toBe(users[0].id)
+  })
 })

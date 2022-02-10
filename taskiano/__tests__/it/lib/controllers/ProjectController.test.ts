@@ -70,4 +70,30 @@ describe('controller', () => {
 
     expect(checkProject?.hasArchived).toBeTruthy()
   })
+
+  it('Filter Project:userId', async () => {
+    const project = await controller.filter(
+      'userId',
+      '==',
+      '7fd18545-8054-45f5-9d76-9addd179d13b'
+    )
+    const { length } = project
+
+    expect(length).toBeGreaterThanOrEqual(1)
+
+    project.forEach((p) =>
+      expect(p.userId).toBe('7fd18545-8054-45f5-9d76-9addd179d13b')
+    )
+  })
+
+  it('Filter Project:hasArchived', async () => {
+    const project = await controller.filter('hasArchived', '==', false)
+    const { length } = project
+
+    expect(length).toBeGreaterThanOrEqual(1)
+
+    project.forEach((p) => {
+      expect(p.hasArchived).toBeFalsy()
+    })
+  })
 })

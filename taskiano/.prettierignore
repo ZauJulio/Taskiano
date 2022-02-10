@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.*
+coverage/
+public/
+env*
+yarn.lock
+tsconfig.tsbuildinfo
+!.storybook
+!.jest

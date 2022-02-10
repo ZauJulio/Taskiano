@@ -1,4 +1,4 @@
-@import "../../styles/vars.scss";
+@import '../../styles/vars.scss';
 
 .notePreviewContainer {
   @include flex-box($direction: column, $align: center, $justify: center);

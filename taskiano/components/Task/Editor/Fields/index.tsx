@@ -1,12 +1,12 @@
-import React, { memo } from "react";
+import React, { memo } from 'react'
 
-import ToogleButton from "../../../ToogleButton";
+import ToogleButton from '../../../ToogleButton'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 interface IField {
-  value: string | number | boolean | any;
-  onChange: (value: string | number | boolean | any) => void;
+  value: string | number | boolean | any
+  onChange: (value: string | number | boolean | any) => void
 }
 
 const NoteTaskFc = (props: IField) => {
@@ -19,8 +19,8 @@ const NoteTaskFc = (props: IField) => {
         onChange={(e) => props.onChange(e.target.value)}
       />
     </div>
-  );
-};
+  )
+}
 
 const TimerTaskFc = (props: IField) => {
   return (
@@ -32,8 +32,8 @@ const TimerTaskFc = (props: IField) => {
         onChange={props.onChange}
       />
     </label>
-  );
-};
+  )
+}
 
 const TitleTaskFc = (props: IField) => {
   return (
@@ -45,8 +45,8 @@ const TitleTaskFc = (props: IField) => {
         onChange={(e) => props.onChange(e.target.value)}
       />
     </label>
-  );
-};
+  )
+}
 
 const FixTaskFc = (props: IField) => {
   return (
@@ -54,8 +54,8 @@ const FixTaskFc = (props: IField) => {
       Fixado
       <ToogleButton value={props.value} onChange={props.onChange} />
     </label>
-  );
-};
+  )
+}
 
 const SelectPriorityFc = (props: IField) => {
   return (
@@ -75,11 +75,11 @@ const SelectPriorityFc = (props: IField) => {
         <option value={7}>Urgente</option>
       </select>
     </label>
-  );
-};
+  )
+}
 
-export const NoteTask = memo(NoteTaskFc);
-export const TimerTask = memo(TimerTaskFc);
-export const TitleTask = memo(TitleTaskFc);
-export const FixTask = memo(FixTaskFc);
-export const SelectPriority = memo(SelectPriorityFc);
+export const NoteTask = memo(NoteTaskFc)
+export const TimerTask = memo(TimerTaskFc)
+export const TitleTask = memo(TitleTaskFc)
+export const FixTask = memo(FixTaskFc)
+export const SelectPriority = memo(SelectPriorityFc)

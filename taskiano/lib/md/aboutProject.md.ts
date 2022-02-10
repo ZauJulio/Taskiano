@@ -40,6 +40,6 @@ Aqui é necessário criar um projeto para adicionar suas tarefas.
 
 1. **Widget**: Visualização todas as tarefas por projeto.
 2. **Lista**: Visualiza todos os projetos e tarefas em uma única lista.
-`;
+`
 
-export default aboutProject;
+export default aboutProject

@@ -1,4 +1,4 @@
-@import "../../styles/vars.scss";
+@import '../../styles/vars.scss';
 
 .carouselContainer {
   @include flex-box($justify: center, $align: center);

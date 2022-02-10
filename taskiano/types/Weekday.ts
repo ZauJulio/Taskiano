@@ -1,6 +1,6 @@
 interface IWeekday {
-  day: string;
-  count: number;
+  day: string
+  count: number
 }
 
-export default IWeekday;
+export default IWeekday

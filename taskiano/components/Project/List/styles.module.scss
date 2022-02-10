@@ -1,4 +1,4 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
 .tableContent {
   @include flex-box($direction: column, $justify: center, $align: center);

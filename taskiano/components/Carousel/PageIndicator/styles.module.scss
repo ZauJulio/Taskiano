@@ -1,4 +1,4 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
 .pageIndicatorsContainer {
   @include flex-box($justify: center, $align: center);
@@ -7,7 +7,7 @@
   gap: 0.7rem;
   padding-top: 1rem;
 
-  .indicatorSelected{
+  .indicatorSelected {
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
@@ -15,7 +15,7 @@
     cursor: pointer;
   }
 
-  .indicatorUnselected{
+  .indicatorUnselected {
     width: 1rem;
     height: 1rem;
     border-radius: 50%;

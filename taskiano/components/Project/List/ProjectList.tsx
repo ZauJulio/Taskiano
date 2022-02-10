@@ -1,32 +1,32 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-import { BiLeftArrow } from "react-icons/bi";
+import { BiLeftArrow } from 'react-icons/bi'
 
-import { useProjects } from "../../../hooks/useProjects";
+import { useProjects } from '../../../hooks/useProjects'
 
-import Task from "../../Task";
-import EditorProject from "../../Project/Editor";
-import { ClockTimer } from "../../ClockTimer";
-import { getDescriptionTime } from "../../../utils";
+import Task from '../../Task'
+import EditorProject from '../../Project/Editor'
+import { ClockTimer } from '../../ClockTimer'
+import { getDescriptionTime } from '../../../utils'
 
-import type { IProject, ITask } from "../../../types";
-import styles from "./styles.module.scss";
+import type { IProject, ITask } from '../../../types'
+import styles from './styles.module.scss'
 
 export interface ITaskProject extends ITask {
-  projectName?: string;
-  projectColor?: string;
-  projectId?: string;
+  projectName?: string
+  projectColor?: string
+  projectId?: string
 }
 
 interface IProjectList {
-  tasks?: ITaskProject[];
+  tasks?: ITaskProject[]
 }
 
 function ProjectList(props: IProjectList) {
-  const [editProject, setEditProject] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<IProject>();
+  const [editProject, setEditProject] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<IProject>()
 
-  const getProject = useProjects((ctx) => ctx.get);
+  const getProject = useProjects((ctx) => ctx.get)
 
   const EditorProjectView = () => {
     if (editProject && selectedProject)
@@ -35,10 +35,10 @@ function ProjectList(props: IProjectList) {
           project={selectedProject}
           close={() => setEditProject(false)}
         />
-      );
+      )
 
-    return null;
-  };
+    return null
+  }
 
   return (
     <>
@@ -70,8 +70,8 @@ function ProjectList(props: IProjectList) {
               <td className={styles.priority}>{task?.priority}</td>
 
               <td className={styles.createdAt}>
-                {new Date(task.created_at ?? "")
-                  .toLocaleString("pt-BR")
+                {new Date(task.created_at ?? '')
+                  .toLocaleString('pt-BR')
                   .slice(0, -3)}
               </td>
 
@@ -79,8 +79,8 @@ function ProjectList(props: IProjectList) {
                 className={styles.project}
                 style={{ background: task?.projectColor }}
                 onClick={() => {
-                  setEditProject(true);
-                  setSelectedProject(getProject(task?.projectId));
+                  setEditProject(true)
+                  setSelectedProject(getProject(task?.projectId))
                 }}
               >
                 <BiLeftArrow />
@@ -93,7 +93,7 @@ function ProjectList(props: IProjectList) {
         </tbody>
       </table>
     </>
-  );
+  )
 }
 
-export default ProjectList;
+export default ProjectList

@@ -1,4 +1,4 @@
-@import "./vars.scss";
+@import './vars.scss';
 
 .container {
   @include flex-box($justify: center, $align: center);
@@ -24,7 +24,7 @@
       opacity: 0.6;
     }
 
-    .loginBtn{
+    .loginBtn {
       @include font-bebas-neue($size: 3rem);
       @include block-text-select();
       color: $blueDark;

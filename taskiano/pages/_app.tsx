@@ -1,37 +1,27 @@
-import React, { useEffect, useState } from "react";
+import Head from 'next/head'
 
-import Head from "next/head";
-import { useRouter } from "next/router";
-import type { AppProps } from "next/app";
+import { ToastContainer } from 'react-toastify'
 
-import { ToastContainer } from "react-toastify";
-import stylesToast from "../styles/Toast.module.scss";
+import Loader from '../components/Loader'
 
-import { AuthContextProvider } from "../contexts/AuthContext";
-import { ProjectsContextProvider } from "../contexts/ProjectsContext";
-import { TasksContextProvider } from "../contexts/TasksContext";
-import { HistoryContextProvider } from "../contexts/HistoryContext";
+import GlobalContext from '../contexts/GlobalContext'
+import { useAuthHook, useFirebaseAuth, useRouterLoading } from '../hooks'
 
-import Loader from "../components/Loader";
+import stylesToast from '../styles/Toast.module.scss'
 
-import "../services/Firebase";
-import "../styles/globals.scss";
-import "react-toastify/dist/ReactToastify.css";
+import type { AppProps } from 'next/app'
+import type { IAuthState } from '../types'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
+import '../services/Firebase'
+import '../styles/globals.scss'
+import 'react-toastify/dist/ReactToastify.css'
 
-  useEffect(() => {
-    const handleStart = (url: string) => {
-      url !== router.pathname ? setLoading(true) : setLoading(false);
-    };
-    const handleComplete = () => setLoading(false);
+interface MyAppProps extends AppProps {
+  authState: IAuthState
+}
 
-    router.events.on("routeChangeStart", handleStart);
-    router.events.on("routeChangeComplete", handleComplete);
-    router.events.on("routeChangeError", handleComplete);
-  }, [router]);
+function MyApp({ Component, pageProps, ...props }: MyAppProps) {
+  const loading = useRouterLoading(props.router)
 
   return (
     <>
@@ -93,16 +83,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Loader isLoading={loading} />
 
-      <AuthContextProvider router={router}>
-        <HistoryContextProvider>
-          <ProjectsContextProvider>
-            <TasksContextProvider>
-              <Component {...pageProps} />
-            </TasksContextProvider>
-          </ProjectsContextProvider>
-        </HistoryContextProvider>
-      </AuthContextProvider>
+      <GlobalContext authState={props.authState}>
+        <Component {...pageProps} />
+      </GlobalContext>
     </>
-  );
+  )
 }
-export default MyApp;
+
+function AppWithAuth(props: AppProps) {
+  const authState = useAuthHook({ authHook: useFirebaseAuth })
+
+  return <MyApp {...props} authState={authState} />
+}
+
+export default AppWithAuth

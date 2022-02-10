@@ -1,3 +1,3 @@
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
-export default CountdownCircleTimer;
+export default CountdownCircleTimer

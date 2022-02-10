@@ -1,43 +1,43 @@
-import React from "react";
+import React from 'react'
 
-import Modal from "../../Modal";
-import useFormState from "./useFormState";
-import { ColorSelect, Description, Name } from "./Fields";
+import Modal from '../../Modal'
+import useFormState from './useFormState'
+import { ColorSelect, Description, Name } from './Fields'
 
-import { IProject } from "../../../types";
+import { IProject } from '../../../types'
 
-import styles from "./styles.module.scss";
-import { BsFillTrashFill } from "react-icons/bs";
-import colors from "../../../styles/colors";
-import { useProjects } from "../../../hooks/useProjects";
-import { toast } from "react-toastify";
+import styles from './styles.module.scss'
+import { BsFillTrashFill } from 'react-icons/bs'
+import colors from '../../../styles/colors'
+import { useProjects } from '../../../hooks/useProjects'
+import { toast } from 'react-toastify'
 
 interface IEditorProject {
-  project?: IProject;
-  close: () => void;
+  project?: IProject
+  close: () => void
 }
 
 function EditorProject(props: IEditorProject) {
   const formState = useFormState({
     project: props.project,
-    close: props.close,
-  });
+    close: props.close
+  })
 
-  const deleteProject = useProjects((ctx) => ctx.deleteProject);
+  const deleteProject = useProjects((ctx) => ctx.deleteProject)
 
   const tryDeleteProject = () => {
     try {
       toast.promise(deleteProject(props.project?.id), {
-        pending: "Excluindo",
-        success: "Tudo certo 🦄",
-        error: "Ah não! Verifique os dados 🤯",
-      });
+        pending: 'Excluindo',
+        success: 'Tudo certo 🦄',
+        error: 'Ah não! Verifique os dados 🤯'
+      })
 
-      props.close();
+      props.close()
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   return (
     <Modal close={props.close}>
@@ -70,7 +70,7 @@ function EditorProject(props: IEditorProject) {
         </form>
       </div>
     </Modal>
-  );
+  )
 }
 
-export default EditorProject;
+export default EditorProject

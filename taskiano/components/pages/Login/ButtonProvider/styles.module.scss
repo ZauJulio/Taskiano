@@ -1,4 +1,4 @@
-@import "../../../../styles/vars.scss";
+@import '../../../../styles/vars.scss';
 
 .signInButton {
   @include flex-box($justify: space-between, $align: center);

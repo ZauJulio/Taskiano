@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo } from 'react'
 
 function LogoFC() {
   return (
@@ -9,7 +9,7 @@ function LogoFC() {
           fill="url(#a)"
         />
       </g>
-      
+
       <defs>
         <linearGradient
           id="a"
@@ -28,8 +28,8 @@ function LogoFC() {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 }
 
-const Logo = memo(LogoFC);
-export default Logo;
+const Logo = memo(LogoFC)
+export default Logo

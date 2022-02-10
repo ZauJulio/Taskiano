@@ -1,10 +1,10 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
-.selector{
+.selector {
   @include flex-box($justify: space-between);
   @include max-size-percent();
 
-  &:first-child:nth-last-child(1){
+  &:first-child:nth-last-child(1) {
     @include flex-box($justify: center);
   }
 

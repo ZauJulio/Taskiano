@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 interface IToogleButton {
-  className?: string;
-  onChange: (value: any) => void;
-  value: any;
+  className?: string
+  onChange: (value: any) => void
+  value: any
 }
 
 function ToogleButton(props: IToogleButton) {
@@ -20,7 +20,7 @@ function ToogleButton(props: IToogleButton) {
       />
       <label htmlFor="switch-shadow" />
     </div>
-  );
+  )
 }
 
-export default ToogleButton;
+export default ToogleButton

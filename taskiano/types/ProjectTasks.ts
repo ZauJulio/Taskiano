@@ -1,8 +1,8 @@
-import { ITask } from ".";
+import { ITask } from '.'
 
 interface IProjectTasks {
-  projectId: string;
-  tasks: ITask[];
+  projectId: string
+  tasks: ITask[]
 }
 
-export default IProjectTasks;
+export default IProjectTasks

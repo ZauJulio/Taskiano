@@ -1,34 +1,34 @@
-import React from "react";
+import React from 'react'
 // https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
 import {
   FixTask,
   NoteTask,
   SelectPriority,
   TimerTask,
-  TitleTask,
-} from "./Fields";
+  TitleTask
+} from './Fields'
 
-import MarkdownPreview from "../../MarkdownPreview";
-import useFormState from "./useFormState";
+import MarkdownPreview from '../../MarkdownPreview'
+import useFormState from './useFormState'
 
-import type { ITask } from "../../../types";
+import type { ITask } from '../../../types'
 
-import colors from "../../../styles/colors";
-import styles from "./styles.module.scss";
+import colors from '../../../styles/colors'
+import styles from './styles.module.scss'
 
 interface IEditorTask {
-  task?: ITask;
-  projectId?: string;
-  projectColor?: string;
-  close: () => void;
+  task?: ITask
+  projectId?: string
+  projectColor?: string
+  close: () => void
 }
 
 function EditorTask(props: IEditorTask) {
   const formState = useFormState({
     task: props.task,
     projectId: props.projectId,
-    close: props.close,
-  });
+    close: props.close
+  })
 
   return (
     <div className={styles.editorTaskContainer}>
@@ -38,7 +38,7 @@ function EditorTask(props: IEditorTask) {
           style={{ background: props.projectColor ?? colors.white }}
         >
           <h1 className={styles.title}>
-            {props.task ? "Editar tarefa" : "Criar tarefa"}
+            {props.task ? 'Editar tarefa' : 'Criar tarefa'}
           </h1>
         </div>
 
@@ -78,7 +78,7 @@ function EditorTask(props: IEditorTask) {
         <input className={styles.formSubmit} type="submit" value="Salvar" />
       </form>
     </div>
-  );
+  )
 }
 
-export default EditorTask;
+export default EditorTask

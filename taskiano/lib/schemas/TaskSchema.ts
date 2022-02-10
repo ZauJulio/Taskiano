@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+import * as Yup from 'yup'
 
 const TaskSchema = Yup.object().shape({
   id: Yup.string(),
@@ -11,7 +11,7 @@ const TaskSchema = Yup.object().shape({
   status: Yup.string().required(),
   created_at: Yup.date().required(),
   closed_in: Yup.date().nullable().default(null),
-  timer: Yup.date().nullable().default(null),
-});
+  timer: Yup.date().nullable().default(null)
+})
 
-export default TaskSchema;
+export default TaskSchema

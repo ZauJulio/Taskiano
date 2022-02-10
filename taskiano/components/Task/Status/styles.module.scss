@@ -1,4 +1,4 @@
-@import "../../../styles/vars.scss";
+@import '../../../styles/vars.scss';
 
 .taskStatusContainer {
   @include flex-box($justify: flex-start, $align: center);

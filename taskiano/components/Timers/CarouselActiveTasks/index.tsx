@@ -1,20 +1,20 @@
-import React from "react";
-import Carousel from "../../Carousel";
+import React from 'react'
+import Carousel from '../../Carousel'
 
-import type { ITask } from "../../../types";
-import colors from "../../../styles/colors";
-import styles from "./styles.module.scss";
+import type { ITask } from '../../../types'
+import colors from '../../../styles/colors'
+import styles from './styles.module.scss'
 
 interface ICarouselActiveTasks {
-  currentTasks?: ITask[];
-  selectedTask?: ITask;
-  handleSelectTask: (id?: string) => void;
+  currentTasks?: ITask[]
+  selectedTask?: ITask
+  handleSelectTask: (id?: string) => void
 }
 
 function CarouselActiveTasks(props: ICarouselActiveTasks) {
   const isActive = (task: ITask) => {
-    return task?.id === props.selectedTask?.id;
-  };
+    return task?.id === props.selectedTask?.id
+  }
 
   return (
     <Carousel howMany={3} infiniteScroll>
@@ -31,7 +31,7 @@ function CarouselActiveTasks(props: ICarouselActiveTasks) {
         </a>
       ))}
     </Carousel>
-  );
+  )
 }
 
-export default CarouselActiveTasks;
+export default CarouselActiveTasks

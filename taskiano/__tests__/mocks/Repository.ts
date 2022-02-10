@@ -8,6 +8,7 @@ interface MockRepositoryProps<T> extends IRepositoryConstructor {
   data: T[]
 }
 
+
 export class Repository<T> implements IRepository<T> {
   ref: any
   schema: SchemaOf<any>
